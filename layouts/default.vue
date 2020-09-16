@@ -4,12 +4,28 @@
       <div class="title">
         {{ blogInfo.title }}
       </div>
-      <ul class="links">
-        <li>首页</li>
-        <li>目录</li>
-        <li>留言板</li>
-        <li>关于我</li>
-      </ul>
+      <div class="links">
+        <nuxt-link to="/">
+          <div class="link">
+            首页
+          </div>
+        </nuxt-link>
+        <nuxt-link to="/menu">
+          <div class="link">
+            目录
+          </div>
+        </nuxt-link>
+        <nuxt-link to="/messages">
+          <div class="link">
+            留言板
+          </div>
+        </nuxt-link>
+        <nuxt-link to="/about">
+          <div class="link">
+            关于我
+          </div>
+        </nuxt-link>
+      </div>
     </div>
     <Nuxt />
   </div>
@@ -40,14 +56,24 @@ html
 
 .header
   position: relative
-  background: #212121
+  background: #24292e
   color: white
+  height: 48px
+  display: flex
+  align-items: center
   .title
     color: white
     font-size: 18px
+    margin-left: 8px
   .links
     position: absolute
     right: 0
     font-size: 14px
     top: 0
+    display: flex
+    align-items: center
+    .link
+      color: white
+      margin-right: 16px
+
 </style>
