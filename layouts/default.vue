@@ -37,7 +37,34 @@ export default {
     return {
       blogInfo: {
         title: '壶中界'
+      },
+      scrollDirection: null,
+      scrollY: false
+    }
+  },
+  watch: {
+    scrollDirection (val) {
+      console.log(val)
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', () => {
+      // todo 新增延时锁，避免时时刻刻触发
+      this.scroll()
+    })
+  },
+  methods: {
+    scroll () {
+      if (!this.scrollY) {
+        this.scrollY = window.pageYOffset
       }
+      const diffY = this.scrollY - window.pageYOffset
+      if (diffY < 0) {
+        this.scrollDirection = 'down'
+      } else if (diffY > 0) {
+        this.scrollDirection = 'up'
+      }
+      this.scrollY = window.pageYOffset
     }
   }
 
@@ -70,10 +97,11 @@ html
     right: 0
     font-size: 14px
     top: 0
+    height: 100%
     display: flex
     align-items: center
     .link
       color: white
-      margin-right: 16px
+      margin-right: 32px
 
 </style>
