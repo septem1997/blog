@@ -55,15 +55,17 @@ export default {
   },
   methods: {
     scroll () {
-      if (!this.scrollY) {
+      if (!this.scrollY) { // 目前滚动了多少距离给定一个初始值
         this.scrollY = window.pageYOffset
       }
+      // 通过上次滚动的距离和当前滚动的距离作差，判定滚动方向
       const diffY = this.scrollY - window.pageYOffset
       if (diffY < 0) {
         this.scrollDirection = 'down'
       } else if (diffY > 0) {
         this.scrollDirection = 'up'
       }
+      // 将这次滚动的距离记录下来，以便下次使用
       this.scrollY = window.pageYOffset
     }
   }
