@@ -46,7 +46,9 @@
       </div>
       <div class="wrap">
         <a-locale-provider :locale="zh_CN">
-          <nuxt />
+          <div class="adminContainer">
+            <nuxt />
+          </div>
         </a-locale-provider>
       </div>
     </div>
@@ -136,6 +138,10 @@ export default {
       background: #f5f5f5
       padding: 20px
       overflow: auto
+      .adminContainer
+        border-radius: 5px
+        background: white
+        padding: 20px
     .tools
       position: absolute
       right: 50px

@@ -9,3 +9,9 @@
   justify-content: center;
   width: 800px;
 }
+.adminTitle{
+  font-size: 24px;
+}
+.tableWrap{
+  margin-top: 18px;
+}

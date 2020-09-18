@@ -57,6 +57,12 @@ export default ({ app }) => {
         const code = match[1]
         if (code === '429') {
           message.error('接口调用过于频繁，请稍后再试')
+        } else if (code === '401') {
+          message.error('token已过期，请重新登录', 1, () => {
+            app.router.replace(
+              '/admin/login?redirect=' + app.router.app.$route.fullPath
+            )
+          })
         } else {
           message.error('系统错误，错误码：' + code)
         }
