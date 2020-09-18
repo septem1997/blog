@@ -17,6 +17,7 @@ export default ({ app }) => {
     if (loadings.length > 0) {
       loadings.push('fakeLoading')
     } else {
+      // 调用message.loading后会返回一个方法，将这个方法储存起来，接口响应后再执行它以关闭
       loadings.push(message.loading('加载中...', 0))
     }
     return config
@@ -24,6 +25,11 @@ export default ({ app }) => {
 
   function removeLoading () {
     if (loadings.length === 1) {
+      /**
+       * 以下代码等同于
+       * const close = loadings.pop()
+       * close()
+       */
       loadings.pop()()
     } else {
       loadings.splice(loadings.findIndex(item => typeof item === 'string'), 1)
