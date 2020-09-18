@@ -12,6 +12,8 @@ export default ({ app }) => {
       }
     }
     config.url = urlPrefix + config.url
+
+    // 避免多个接口同时调用时出现多个loading框
     if (loadings.length > 0) {
       loadings.push('fakeLoading')
     } else {
