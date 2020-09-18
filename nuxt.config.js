@@ -30,7 +30,7 @@ export default {
   */
   css: [
     'ant-design-vue/dist/antd.css',
-    'assets/global.css'
+    'assets/css/global.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -69,5 +69,8 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+  server: {
+    port: 8000 // default: 3000
   }
 }

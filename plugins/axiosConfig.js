@@ -1,10 +1,16 @@
 import { message } from 'ant-design-vue'
 
 export default ({ app }) => {
-  const urlPrefix = 'localhost:3000/'
+  const urlPrefix = 'http://localhost:3000/'
   const loadings = []
   app.$axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
+    if (!config.url.includes('api/')) { // /api开头的接口代表是前端用，反之则是管理系统用的
+      // 管理系统所调用的接口须在header上带上token
+      config.headers = {
+        Authorization: sessionStorage.getItem('token')
+      }
+    }
     config.url = urlPrefix + config.url
     if (loadings.length > 0) {
       loadings.push('fakeLoading')
@@ -16,8 +22,7 @@ export default ({ app }) => {
 
   function removeLoading () {
     if (loadings.length === 1) {
-      // loadings.pop()()  暂时不开启loading框
-      loadings.pop()
+      loadings.pop()()
     } else {
       loadings.splice(loadings.findIndex(item => typeof item === 'string'), 1)
     }
@@ -27,11 +32,10 @@ export default ({ app }) => {
     function (res) {
       // 对响应成功后做点什么
       removeLoading()
-      // debugger
       if (res.data.code === 0) {
         return Promise.resolve(res.data.data)
       } else {
-        message.error('执行错误：' + res.data.msg)
+        message.error('执行失败：' + res.data.msg)
         // eslint-disable-next-line prefer-promise-reject-errors
         return Promise.reject()
       }
