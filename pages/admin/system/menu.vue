@@ -26,7 +26,7 @@
             <a-icon type="edit" />
           </a>
           <a-divider type="vertical" />
-          <a>
+          <a @click="delMenu(item)">
             <a-icon type="delete" />
           </a>
         </div>
@@ -96,14 +96,19 @@ export default {
 
   },
   methods: {
+    async delMenu (node) {
+      // todo 弹出对话框询问后再删除
+      await this.$axios.post('menu/delete?id=' + node.id)
+      sessionStorage.removeItem('menu')
+      await this.$store.dispatch('menu/update') // 同下面的handleOk方法
+    },
     editMenu (node) {
       this.form.setFieldsValue(node)
       this.formVisible = true
     },
     addMenu (node) {
       if (node) {
-        this.form.setFieldsValue(Object.assign({}, node, {
-          id: null,
+        this.form.setFieldsValue(Object.assign({}, {
           parentId: node.id
         }))
       } else {
@@ -115,7 +120,10 @@ export default {
       this.form.validateFields(async (err, values) => {
         if (!err) {
           await this.$axios.post('menu/edit', values)
+          sessionStorage.removeItem('menu')
+          await this.$store.dispatch('menu/update') // 因为menu是储存在store里的，所以要删除缓存再dispatch
           this.formVisible = false
+          this.form.resetFields()
         }
       })
     },
