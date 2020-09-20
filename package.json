@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.0",
+    "@tinymce/tinymce-vue": "^3.2.3",
     "ant-design-vue": "^1.6.4",
     "nuxt": "^2.14.0"
   },

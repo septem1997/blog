@@ -68,6 +68,8 @@
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
+import 'ant-design-vue/dist/antd.css'
+
 moment.locale('zh-cn')
 export default {
   name: 'Admin',

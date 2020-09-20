@@ -7,9 +7,9 @@ export default ({ app }) => {
     // 在发送请求之前做些什么
     if (!config.url.includes('api/')) { // /api开头的接口代表是前端用，反之则是管理系统用的
       // 管理系统所调用的接口须在header上带上token
-      config.headers = {
+      config.headers = Object.assign(config.headers, {
         Authorization: sessionStorage.getItem('token')
-      }
+      })
     }
     config.url = urlPrefix + config.url
 

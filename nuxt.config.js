@@ -29,7 +29,7 @@ export default {
   ** Global CSS
   */
   css: [
-    'ant-design-vue/dist/antd.css',
+    // 'ant-design-vue/dist/antd.css',
     'assets/css/global.css'
   ],
   /*

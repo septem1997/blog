@@ -41,6 +41,7 @@ export default {
           console.log('Received values of form: ', values)
           const token = await this.$axios.post('login', values)
           sessionStorage.setItem('token', 'Bearer ' + token)
+          // todo 从哪跳过来的，登陆后就跳到哪回去
           this.$router.replace('/admin/')
         }
       })
