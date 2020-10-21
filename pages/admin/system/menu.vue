@@ -96,11 +96,15 @@ export default {
 
   },
   methods: {
-    async delMenu (node) {
-      // todo 弹出对话框询问后再删除
-      await this.$axios.post('menu/delete?id=' + node.id)
-      sessionStorage.removeItem('menu')
-      await this.$store.dispatch('menu/update') // 同下面的handleOk方法
+    delMenu (node) {
+      this.$confirm({
+        title: '确定删除该菜单吗?',
+        onOk: async () => {
+          await this.$axios.post('menu/delete?id=' + node.id)
+          sessionStorage.removeItem('menu')
+          await this.$store.dispatch('menu/update') // 同下面的handleOk方法
+        }
+      })
     },
     editMenu (node) {
       this.form.setFieldsValue(node)
