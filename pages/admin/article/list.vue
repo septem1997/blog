@@ -17,8 +17,13 @@
         :pagination="pagination"
         @change="handleChange"
       >
-        <template slot="name" slot-scope="name">
-          {{ name.first }} {{ name.last }}
+        <template slot="operation" slot-scope="text, record">
+          <a-popconfirm
+            title="确定删除该文章吗?"
+            @confirm="() => handleDel(record.id)"
+          >
+            <a href="javascript:">删除</a>
+          </a-popconfirm>
         </template>
       </a-table>
     </div>
@@ -78,7 +83,11 @@ export default {
   },
   data () {
     return {
-      pagination: {},
+      pagination: {
+        pageSize: 5, // 给定默认一页5行数据
+        current: 1, // 给定默认第一页
+        total: 0 // total代表数据总数，根据这个数字来进行分多少页(既total/pageSize)
+      },
       data: [],
       form: this.$form.createForm(this),
       formVisible: false,
@@ -96,12 +105,15 @@ export default {
         }, {
           title: '创建时间',
           dataIndex: 'createTime'
+        }, {
+          title: '操作',
+          scopedSlots: { customRender: 'operation' }
         }
       ]
     }
   },
   mounted () {
-    this.getData()
+    this.getData(this.pagination)
   },
   methods: {
     uploadImg (blobInfo, success, failure) {
@@ -128,6 +140,12 @@ export default {
       this.form.resetFields()
       this.content = ''
     },
+    async handleDel (id) {
+      await this.$axios.post('article/delete', {
+        ids: [id]
+      })
+      this.getData(this.pagination)
+    },
     handleOk () {
       this.form.validateFields(async (err, values) => {
         if (!err) {
@@ -140,22 +158,26 @@ export default {
             summary
           }))
           this.resetForm()
-          this.getData()
+          this.getData(this.pagination)
           this.formVisible = false
         }
       })
     },
-    async getData () {
+    async getData (pagination) {
       const res = await this.$axios({
         url: 'article',
         params: {
-          pageNum: 1,
-          pageSize: 10
+          pageNum: pagination.current,
+          pageSize: pagination.pageSize
         }
       })
+      // 读取数据后更新分页数据
+      pagination.total = res.total
+      this.pagination = pagination
       this.data = res.list
     },
-    handleChange () {
+    handleChange (pagination) {
+      this.getData(pagination)
     }
   },
   layout: 'admin'
