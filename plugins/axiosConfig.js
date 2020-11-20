@@ -1,7 +1,7 @@
 import { message } from 'ant-design-vue'
 
 export default ({ app }) => {
-  const urlPrefix = 'http://localhost:3000/'
+  const urlPrefix = 'http://139.9.94.141:3000/'
   const loadings = []
   app.$axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么

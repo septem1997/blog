@@ -38,6 +38,7 @@ export default {
       e.preventDefault()
       this.form.validateFields(async (err, values) => {
         if (!err) {
+          console.log('Received values of form: ', values)
           const token = await this.$axios.post('login', values)
           sessionStorage.setItem('token', 'Bearer ' + token)
           this.$router.replace(this.$route.query.redirect || '/admin/')

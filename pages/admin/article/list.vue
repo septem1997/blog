@@ -178,6 +178,8 @@ export default {
     },
     handleChange (pagination) {
       this.getData(pagination)
+      console.log(this.pagination)
+      console.log(pagination)
     }
   },
   layout: 'admin'

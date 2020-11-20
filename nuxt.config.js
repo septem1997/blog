@@ -71,6 +71,6 @@ export default {
   build: {
   },
   server: {
-    port: 8000 // default: 3000
+    port: 80 // default: 3000
   }
 }

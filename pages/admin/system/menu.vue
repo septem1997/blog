@@ -102,6 +102,7 @@ export default {
         onOk: async () => {
           await this.$axios.post('menu/delete?id=' + node.id)
           sessionStorage.removeItem('menu')
+          console.log(this.$store)
           await this.$store.dispatch('menu/update') // 同下面的handleOk方法
         }
       })
@@ -123,6 +124,7 @@ export default {
     handleOk () {
       this.form.validateFields(async (err, values) => {
         if (!err) {
+          console.log('1')
           await this.$axios.post('menu/edit', values)
           sessionStorage.removeItem('menu')
           await this.$store.dispatch('menu/update') // 因为menu是储存在store里的，所以要删除缓存再dispatch

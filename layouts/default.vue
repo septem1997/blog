@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       blogInfo: {
-        title: '壶中界'
+        title: '这里是博客标题'
       },
       scrollDirection: null,
       scrollY: false

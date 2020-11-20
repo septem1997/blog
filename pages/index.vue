@@ -31,6 +31,11 @@ export default {
         createTime: '2020-10-10 10:10:12'
       })
     }
+  },
+  head () {
+    return {
+      title: '陈校培的个人空间'
+    }
   }
 }
 </script>
