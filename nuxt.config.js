@@ -38,7 +38,8 @@ export default {
   */
   plugins: [
     '@/plugins/antd-ui',
-    '@/plugins/axiosConfig'
+    '@/plugins/axiosConfig',
+    '@/plugins/font-awesome'
   ],
   /*
   ** Auto import components

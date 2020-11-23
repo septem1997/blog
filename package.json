@@ -11,6 +11,9 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "@nuxtjs/axios": "^5.12.0",
     "@tinymce/tinymce-vue": "^3.2.3",
     "ant-design-vue": "^1.6.4",
@@ -24,6 +27,8 @@
     "eslint": "^7.5.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "node-sass": "^4.14.1",
-    "sass-loader": "^10.0.2"
+    "sass-loader": "^10.0.2",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.0"
   }
 }
