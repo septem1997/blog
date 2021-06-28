@@ -324,6 +324,13 @@ export default {
     height: auto
   .avatar
     height: 6cm
+  .section
+    flex-direction: column
+    align-items: center
+  .content-head
+    flex-direction: column
+  .title
+    margin-bottom: 12px
 
 @media screen and (min-width: 769px)
   .page
