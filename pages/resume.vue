@@ -70,30 +70,29 @@
             <strong>岗位职责：</strong>担任前端主力开发，负责公司前端商城等项目的技术选型，框架搭建和业务开发
             <div><strong>主要工作：</strong></div>
             <ul>
-              <li>基于react搭配echarts开发了公司经营数据可视化看板，响应式布局设计，完美适配高分屏</li>
+              <li>基于react搭配echarts图表插件开发了公司经营数据可视化看板，响应式布局设计，完美适配高分屏</li>
               <li>基于electron重构pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
-              <li>基于Vue和Ant Design UI搭建了前后端分离的商品后台管理系统，封装统一API请求接口</li>
+              <li>基于Vue和Ant Design UI搭建了前后端分离的商品后台管理系统，复用代码，统一封装API请求接口</li>
             </ul>
           </div>
 
           <div class="content-head">
-            <div>2019.03~2020.03</div>
+            <div>2018.07~2019.02</div>
             <div>珠海金刚科技有限公司</div>
             <div>全栈开发工程师</div>
           </div>
           <div>
-            <strong>岗位职责：</strong>担任公司前端开发赌场账房系统，并负责报表相关后端业务
+            <strong>岗位职责：</strong>担任公司前端开发赌场账房系统，并负责数据报表统计导出相关后端业务
             <div><strong>主要工作：</strong></div>
             <ul>
-              <li>以非侵入式方式重写ajax请求，添加了拦截器，复用重复代码，提高接口调用开发效率</li>
+              <li>以非侵入式方式重写ajax请求，添加了拦截器，复用代码，提高接口调用开发效率</li>
               <li>完善单据打印功能，利用Promise特性解决了打印顺序不同步的问题，封装打印公共方法，降低了同类需求开发成本</li>
               <li>改进前端框架，独立编写了国际化多语言模块，使得公司产品可面向海外用户</li>
               <li>改进数据报表导出功能，利用webSocket技术分离了数据报表导出等耗时操作</li>
             </ul>
           </div>
-
           <div class="content-head">
-            <div>2019.03~2020.03</div>
+            <div>2017.07~2018.06</div>
             <div>小笋科技(深圳)有限公司</div>
             <div>全栈开发工程师</div>
           </div>
@@ -110,7 +109,7 @@
       </div>
       <div class="section">
         <div class="title">
-          开源<br>作品
+          个人<br>作品
         </div>
         <div class="content">
           <div class="content-head">
@@ -120,7 +119,7 @@
           <div>
             <div><strong>技术栈：</strong>Android | Flutter | Node.js | Mysql | WebSocket</div>
             <div>
-              <strong>项目简介：</strong>一个全局弹幕聊天工具，适用于和小伙伴一起看电影看直播或者玩游戏等场景，在这种场景下你想和小伙伴分享或者吐槽时可直接发送弹幕消息，解决了各大直播和视频平台的弹幕功能无法创建房间的痛点
+              <strong>项目简介：</strong>一个全局弹幕聊天工具，适用于和小伙伴一起看电影看直播或者玩游戏等场景，在这种场景下你想和小伙伴分享或者吐槽时可直接发送弹幕消息，解决了各大直播和视频平台的弹幕功能无法创建房间的痛点（文末附二维码，Android手机扫码可体验）
             </div>
           </div>
           <div class="content-head">
@@ -137,14 +136,38 @@
       </div>
       <div class="section">
         <div class="title">
+          专业<br>技能
+        </div>
+        <div class="content">
+          <ul>
+            <li>编程语言：HTML5，CSS3，JavaScript，TypeScript，Java，Dart</li>
+            <li>前端框架：Vue，React，Electron，jQuery，Flutter，小程序</li>
+            <li>后端框架：Node.js，SpringBoot</li>
+            <li>其他：Git，PS，WebStorm，MySql，WebSocket，Linux，Sass</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="title">
           自我<br>评价
         </div>
         <div class="content" style="border: none">
           <ul>
+            <li>热爱编程，善于利用编程解决生活中遇到的问题，能主动学习并不断更新自身技能</li>
             <li>熟悉常见的数据结构和算法，可从零独立开发应用，包括前端页面编写、数据库设计、服务器接口编写及最终部署上线</li>
-            <li>多年编程经验，熟悉各种编程范式，掌握多门编程语言，从CS架构到BS架构皆可上手</li>
-            <li>熟练使用Google、StackOverflow、GitHub解决编程中遇到的问题</li>
+            <li>良好的产品审美，能独立、按时按量完成工作中的任务，并协助他人工作，勇于沟通</li>
+            <li>具有一定的英语和源码阅读能力，能熟练使用Google、StackOverflow、GitHub等平台解决工作中遇到的问题</li>
           </ul>
+        </div>
+      </div>
+      <div class="qrCode">
+        <div class="qrCode-box">
+          <img src="../assets/img/qrCode.png">
+          <div>线上简历</div>
+        </div>
+        <div class="qrCode-box">
+          <img src="https://www.pgyer.com/app/qrcode/yvV2">
+          <div>共享弹幕</div>
         </div>
       </div>
     </div>
@@ -156,29 +179,6 @@ export default {
   layout: 'blank',
   data () {
     return {
-      skills: [
-        'HTML',
-        'CSS',
-        'JavaScript',
-        'Vue',
-        'Nuxt',
-        'React',
-        'Node.js',
-        'Electron',
-        'jQuery',
-        'Webpack',
-        'Stylus',
-        'PWA',
-        '微信公众号',
-        '小程序',
-        'Java',
-        'Spring',
-        'MySql',
-        'C#',
-        'UWP',
-        'Git',
-        'PhotoShop'
-      ],
       personInfo: {
         age: 24,
         workYear: 4,
@@ -204,11 +204,26 @@ export default {
   background-attachment: fixed
   background-position: center center
   background-size: cover
+.qrCode
+  margin-top: 48px
+  display: flex
+  padding: 1.5cm
+  flex-direction: row-reverse
+  .qrCode-box
+    margin-left: 64px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 128px
+    img
+      width: 100%
+      height: auto
 
 .content-head:not(:first-child)
   margin-top: 24px
 .section
-  padding: 0 1cm
+  padding: 0 1.5cm
   display: flex
   margin-bottom: 12px
   align-items: start
@@ -237,7 +252,7 @@ export default {
   display: flex
   height: 5cm
   background: rgb(244,245,252)
-  padding: 0 1cm
+  padding: 0 1.5cm
   flex-wrap: wrap
   margin-bottom: 2cm
   .avatar
