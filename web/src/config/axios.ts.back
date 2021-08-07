@@ -1,0 +1,74 @@
+import { message } from 'ant-design-vue'
+
+export default ({ app }) => {
+    const urlPrefix = 'http://139.9.94.141:3000/'
+    const loadings = []
+    app.$axios.interceptors.request.use(function (config) {
+        // 在发送请求之前做些什么
+        if (!config.url.includes('api/')) { // /api开头的接口代表是前端用，反之则是管理系统用的
+            // 管理系统所调用的接口须在header上带上token
+            config.headers = Object.assign(config.headers, {
+                Authorization: sessionStorage.getItem('token')
+            })
+        }
+        config.url = urlPrefix + config.url
+
+        // 避免多个接口同时调用时出现多个loading框
+        if (loadings.length > 0) {
+            loadings.push('fakeLoading')
+        } else {
+            // 调用message.loading后会返回一个方法，将这个方法储存起来，接口响应后再执行它以关闭
+            loadings.push(message.loading('加载中...', 0))
+        }
+        return config
+    })
+
+    function removeLoading () {
+        if (loadings.length === 1) {
+            /**
+             * 以下代码等同于
+             * const close = loadings.pop()
+             * close()
+             */
+            loadings.pop()()
+        } else {
+            loadings.splice(loadings.findIndex(item => typeof item === 'string'), 1)
+        }
+    }
+    // 添加响应拦截器
+    app.$axios.interceptors.response.use(
+        function (res) {
+            // 对响应成功后做点什么
+            removeLoading()
+            if (res.data.code === 0) {
+                return Promise.resolve(res.data.data)
+            } else {
+                message.error('执行失败：' + res.data.msg)
+                // eslint-disable-next-line prefer-promise-reject-errors
+                return Promise.reject()
+            }
+        },
+        function (error) {
+            // 对响应错误做点什么
+            removeLoading()
+            const reg = new RegExp('failed with status code ([0-9]*)')
+            const match = error.toString().match(reg)
+            if (match.length > 1) {
+                const code = match[1]
+                if (code === '429') {
+                    message.error('接口调用过于频繁，请稍后再试')
+                } else if (code === '401') {
+                    message.error('token已过期，请重新登录', 1, () => {
+                        app.router.replace(
+                            '/admin/login?redirect=' + app.router.app.$route.fullPath
+                        )
+                    })
+                } else {
+                    message.error('系统错误，错误码：' + code)
+                }
+            }
+            // eslint-disable-next-line prefer-promise-reject-errors
+            return Promise.reject()
+        }
+    )
+}
