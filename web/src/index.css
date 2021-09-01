@@ -6,6 +6,9 @@
     src: url("assets/font/youyuan.ttf");
 }
 *{
-    font-family: youyuan;
     user-select: none;
+}
+html,body{
+    font-family: youyuan;
+    background: gray;
 }
