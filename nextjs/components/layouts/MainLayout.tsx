@@ -12,26 +12,45 @@ import {
 import {useRouter} from "next/router";
 import MenuNavigator from "../navigations/MenuNavigator";
 import BarbaVars from "../../lib/barbaVars";
+import NavigationCards from "../navigations/NavigationCards";
+import {useBlogNavigation} from "../../lib/blogNavigation";
+import {useSnapshot} from "valtio";
 
 function MainLayout({children}: LayoutProps) {
     const startIndex = 0;
     const [exitBefore, setExitBefore] = useState(true);
     const router = useRouter()
-    const [showMenu,setShowMenu] = useState(false)
+    const navigation = useBlogNavigation();
+    const visibleState = useSnapshot(navigation.visibleState)
+    const setNavigationVisible = navigation.setVisible
     const controls = useAnimation()
     useEffect(()=>{
-        if (showMenu){
+        setNavigationVisible(false)
+    },[router.route])
+    useEffect(()=>{
+        const index = navigation.BlogNavigationList
+            .findIndex(n => router.route===n.path)
+        if (visibleState.visible){
             controls.start({
+                top:index*10+'vh',
                 scale:0.8,
-                borderRadius:'10px'
+                borderRadius:'10px',
+                zIndex:10+index,
+                transition:{
+                    duration:0.4
+                }
             })
         }else{
             controls.start({
+                top:0,
                 scale:1,
-                borderRadius:'0px'
+                borderRadius:'0px',
+                transition:{
+                    duration:0.4
+                }
             })
         }
-    },[controls, showMenu])
+    },[controls, visibleState.visible,router.route])
     const vars: Variants = BarbaVars.NavigationVars
     return (
         <div className="layout-wrap">
@@ -54,10 +73,10 @@ function MainLayout({children}: LayoutProps) {
                             {children}
                         </m.div>
                     </m.div>
-
                 </AnimatePresence>
             </LazyMotion>
-            <MenuNavigator onClick={()=>setShowMenu(!showMenu)} className="fixed right-0 top-0" />
+            <NavigationCards/>
+            <MenuNavigator onClick={()=>setNavigationVisible(!visibleState.visible)} className="fixed right-0 top-0 z-20" />
         </div>
     );
 }

@@ -24,7 +24,7 @@ const MenuNavigator = function ({className,onClick}:{className?:string,onClick?:
     const date = now.format(`MM/DD ${['日','一','二','三','四','五','六'][now.day()]}`)
     return (
         <div className={styles.wrapper+' '+className}>
-            <div onClick={onClick}>
+            <div style={{color:"white"}} onClick={onClick}>
                 菜单
             </div>
             <div className={styles['rainbow-circle']}>
