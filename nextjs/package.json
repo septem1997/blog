@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-transition-group": "^4.4.5",
     "dayjs": "^1.11.3",
     "framer-motion": "^6.4.2",
     "gsap": "^3.10.4",
@@ -16,6 +17,7 @@
     "next": "12.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-transition-group": "^4.4.2",
     "styled-components": "^5.3.5",
     "valtio": "^1.6.1"
   },
