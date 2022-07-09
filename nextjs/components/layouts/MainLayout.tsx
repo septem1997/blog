@@ -1,99 +1,82 @@
 import {LayoutProps} from "next/dist/lib/app-layout";
 import {useEffect, useRef, useState} from "react";
-import {Transition, TransitionGroup} from 'react-transition-group'
+import {
+    AnimatePresence,
+    domAnimation,
+    LazyMotion,
+    m,
+    useAnimation,
+    useAnimationControls,
+    Variants
+} from "framer-motion";
 import {useRouter} from "next/router";
 import MenuNavigator from "../navigations/MenuNavigator";
+import BarbaVars from "../../lib/framerMotionVars";
 import NavigationCards from "../navigations/NavigationCards";
 import {useBlogNavigation} from "../../lib/blogNavigation";
-import {useSnapshot} from "valtio";
-import gsap from "gsap";
-import GSAPAnimations from "../../lib/GSAPAnimations";
+
+const usePrevState = function (value:any){
+    const preRef = useRef()
+    useEffect(()=>{
+        preRef.current = value
+    },[value])
+    return preRef.current
+}
 
 function MainLayout({children}: LayoutProps) {
+    const [exitBefore, setExitBefore] = useState(true);
     const router = useRouter()
     const navigation = useBlogNavigation();
-    const visibleState = useSnapshot(navigation.visibleState)
-    const setNavigationVisible = navigation.setVisible
-    const TIMEOUT = 1.25 * 1000
-    const transitionRef = useRef(null)
-    const newPageEnter = async (node: HTMLElement) => {
-        console.log('newPageEnter',visibleState.visible);
-        debugger
-        if (visibleState.visible) {
-            gsap.timeline().fromTo(node, {
-                opacity: 0,
-            }, {
-                opacity: 0,
-                duration: 0.5
-            }).to(node,{
-                opacity: 1,
-                duration:0.1
-            })
-        } else {
-            GSAPAnimations.playPageEnterAnimation(node)
+    const preVisible = usePrevState(navigation.visible)
+    const preRoute = usePrevState(router.route)
+    const [enterAnimation, setEnterAnimation] = useState('slideEnter')
+    const vars: Variants = BarbaVars.NavigationVars
+    useEffect(()=>{
+        if (navigation.visible) {
+            navigation.setVisible(false)
         }
-    }
-    const oldPageLeave = (node: HTMLElement) => {
-
-        // todo 且在里面
-        if (visibleState.visible) {
-            gsap.to(node, {
-                top:'100vh',
-                opacity: 0
-            })
-        } else {
-            GSAPAnimations.playPageLeaveAnimation(node)
-        }
-    }
+    },[router.route])
     useEffect(() => {
-        console.log('route change with nav',visibleState.visible)
-        if (visibleState.visible) {
-            setNavigationVisible(false)
+        const routeChange = router.route !== preRoute
+        const animations:any = {
+            '000':'slideEnter',
+            '001':'slideEnter',
+            '010':'scaleUp',
+            '011':'',
+            '100':'scaleDown',
+            '101':'',
+            '110':'scaleDown',
+            '111':'scaleUp',
         }
-    }, [router.route])
-    useEffect(() => {
-        console.log('scale',visibleState.visible)
-        if (visibleState.visible){
-            const index = navigation.BlogNavigationList
-                .findIndex(n => router.route === n.path)
-            const page = (transitionRef.current as any).firstChild.firstChild
-            if (index >= 0) {
-                if (visibleState.visible) {
-                    GSAPAnimations.playScaleDown(page, {
-                        top: index * 10 + 'vh',
-                        zIndex: 10 + index,
-                    })
-                } else {
-                    GSAPAnimations.playScaleUp(page)
-                }
-            } else {
-                // todo 往下隐藏
-            }
-        }else{
-
-        }
-    }, [visibleState.visible])
+        const key = [navigation.visible,!!preVisible,routeChange].map(Number).join('')
+        console.log('animation key',key)
+        setEnterAnimation(animations[key])
+    }, [navigation.visible,router.route]);
     return (
-        <div
-            ref={transitionRef}
-            className="layout-wrap">
-            <TransitionGroup>
-                <Transition
-                    timeout={TIMEOUT}
-                    onEnter={newPageEnter}
-                    onExit={oldPageLeave}
-                    key={router.route}
-                >
-                    <div
-                        className={'page-wrap'}
-                        data-path={router.route}>
+        <div className="layout-wrap">
+            <LazyMotion features={domAnimation}>
+                <AnimatePresence
+                    initial={false}
+                    exitBeforeEnter={!exitBefore}>
+                    <m.div
+                        key={router.route}
+                        custom={{
+                            animationName:enterAnimation,
+                            route:router.route,
+                            list:navigation.BlogNavigationList
+                        }}
+                        variants={vars}
+                        initial="initial"
+                        animate={'pageEnter'}
+                        exit={'pageExit'}
+                        className="page-wrap"
+                    >
                         {children}
-                    </div>
-                </Transition>
-            </TransitionGroup>
+                    </m.div>
+                </AnimatePresence>
+            </LazyMotion>
             <NavigationCards/>
-            <MenuNavigator onClick={() => setNavigationVisible(!visibleState.visible)}
-                           className="fixed right-0 top-0 z-20"/>
+            <MenuNavigator/>
         </div>
     );
 }

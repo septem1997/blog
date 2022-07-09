@@ -2,7 +2,7 @@ import Home from "../pages";
 import About from "../pages/about";
 import Gallery from "../pages/gallery";
 import {NextPage} from "next";
-import {proxy} from "valtio";
+import {proxy, useSnapshot} from "valtio";
 
 declare type BlogNavigationProp = {
     name:string;
@@ -24,7 +24,9 @@ const BlogNavigationList:BlogNavigationProp[] = [
         children:Gallery
     }
 ]
-const visibleState = proxy({ visible: false })
+const visibleState = proxy({
+    visible: false
+})
 const setVisible = function (visible: boolean) {
     visibleState.visible = visible
 }
@@ -32,7 +34,7 @@ const setVisible = function (visible: boolean) {
 const useBlogNavigation = () => {
     return {
         BlogNavigationList:BlogNavigationList,
-        visibleState:visibleState,
+        visible:useSnapshot(visibleState).visible,
         setVisible:setVisible
     }
 }

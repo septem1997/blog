@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import MyIcon from "../../general/MyIcon";
 import styles from './style.module.css'
-import {MouseEventHandler} from "react";
-const MenuNavigator = function ({className,onClick}:{className?:string,onClick?:MouseEventHandler}) {
+import {useBlogNavigation} from "../../../lib/blogNavigation";
+const MenuNavigator = function () {
     const now = dayjs()
     let hour = now.hour()
     let hourText = ''
@@ -21,10 +21,13 @@ const MenuNavigator = function ({className,onClick}:{className?:string,onClick?:
     }else {
         hourText = '夜间'
     }
+    const {setVisible,visible} = useBlogNavigation()
     const date = now.format(`MM/DD ${['日','一','二','三','四','五','六'][now.day()]}`)
     return (
-        <div className={styles.wrapper+' '+className}>
-            <div style={{color:"white"}} onClick={onClick}>
+        <div className={styles.wrapper+' fixed right-0 top-0 z-20'}>
+            <div style={{color:"white"}} onClick={()=>{
+                setVisible(!visible)
+            }}>
                 菜单
             </div>
             <div className={styles['rainbow-circle']}>

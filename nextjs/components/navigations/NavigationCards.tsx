@@ -43,12 +43,11 @@ const CardBox = styled.div`
 
 const NavigationCards = function () {
     const navigation = useBlogNavigation();
-    const visibleState = useSnapshot(navigation.visibleState)
     const router = useRouter()
     const [lock, setLock] = useState(false)
     useEffect(()=>{
         setLock(false)
-    },[visibleState.visible])
+    },[navigation.visible])
     const pushRoute = (index: number, path: string) => {
         setLock(true)
         for (let i = 0; i < navigation.BlogNavigationList.length; i++) {
@@ -121,7 +120,7 @@ const NavigationCards = function () {
         }
     }
     return (
-        <TransitionGroup>{visibleState.visible && navigation.BlogNavigationList
+        <TransitionGroup>{navigation.visible && navigation.BlogNavigationList
             .map((props, index) =>
                 <Transition
                     timeout={600}
