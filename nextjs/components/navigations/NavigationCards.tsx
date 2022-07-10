@@ -2,17 +2,13 @@ import {
     LazyMotion,
     AnimatePresence,
     domAnimation,
-    m, useAnimation, AnimationControls, useAnimationControls, Variants,
+    m, useAnimation, useAnimationControls, Variants,
 } from "framer-motion";
-import {Transition, TransitionGroup} from 'react-transition-group'
 import {BlogNavigationProp, useBlogNavigation} from "../../lib/blogNavigation";
 import styled from "styled-components";
-import {useSnapshot} from "valtio";
 import {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
-import gsap from "gsap";
 import FramerMotionVars from "../../lib/framerMotionVars";
-import {flushSync} from "react-dom";
 
 const Card = styled(m.div)`
   overflow: hidden;
@@ -39,15 +35,6 @@ const CardBox = styled(m.div)`
       color: #0070f3;
     }
   }
-`
-const Mask = styled(m.div)`
-  background: rgb(14,14,14);
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index:10
 `
 
 const NavigationCards = function () {
@@ -76,25 +63,6 @@ const NavigationCards = function () {
     return (
         <LazyMotion features={domAnimation}>
             <AnimatePresence>
-                {/*{navigation.visible&&checkedPath!==''&&<Mask*/}
-                {/*    initial={{*/}
-                {/*        opacity:1*/}
-                {/*    }}*/}
-                {/*    animate={{*/}
-                {/*        opacity:1,*/}
-                {/*        transition:{*/}
-                {/*            duration:0,*/}
-                {/*        }*/}
-                {/*    }}*/}
-                {/*    exit={{*/}
-                {/*        opacity:0,*/}
-                {/*        transition:{*/}
-                {/*            duration:0,*/}
-                {/*            delay:1*/}
-                {/*        }*/}
-                {/*    }}*/}
-                {/*>*/}
-                {/*</Mask>}*/}
                 {navigation.visible&&navigation.BlogNavigationList
                     .map((props, index) =>
                         <CardBox
