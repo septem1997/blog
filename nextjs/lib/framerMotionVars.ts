@@ -53,13 +53,14 @@ const framerMotionVars = {
             const pathInList = params.checkedPath===params.props.path
             if (pathInList){
                 return {
-                    zIndex:19,
+                    zIndex:[19,19,19,19,19],
                     opacity:[1,1,1,1,0],
                     scale: [0.8,0.8, 1, 1,1],
                     rotateX: ['0deg','0deg', '10deg', '0deg','0deg'],
                     top: [topInList, '0vh', '0vh', '0vh','0vh'],
                     transition: {
-                        duration: 1.5
+                        duration: 0.7,
+                        times:[0,0.15,0.4,0.72,1]
                     },
                 }
             }else{
@@ -72,6 +73,7 @@ const framerMotionVars = {
                     }
                 }else{
                     return {
+                        zIndex: -1,
                         top:[topInList,'100vh'],
                         transition:{
                             duration:0.25,
@@ -87,17 +89,16 @@ const framerMotionVars = {
         }):Variant => {
             const index = params.list.findIndex( n =>n.path===params.route)
             const topInList = index*10+'vh'
-            console.log('page enter',params.animationName)
             switch (params.animationName) {
                 case "fadeIn":{
                     return {
-                        opacity:[0,0,1],
-                        top: [0,0,0],
-                        scale: [0.8,1,1],
+                        opacity:[0,1],
+                        top: [0,0],
+                        scale: [1,1],
                         borderRadius: '0px',
                         transition: {
-                            duration:10,
-                            times:[0,0.2,0.8]
+                            delay:0.4,
+                            duration:0,
                         },
                     }
                 }
@@ -148,8 +149,7 @@ const framerMotionVars = {
             throw new Error('找不到对应动画')
         },
         pageExit: (params) => {
-            console.log(params.animationName,'params.animationName')
-            if (params.animationName==='fadeIn'){
+            if (params.checkedPath!==''){
                 return {
                     top:'100vh',
                     transition:{
@@ -158,14 +158,13 @@ const framerMotionVars = {
                 }
             }else{
                 return {
-                    translateZ: ['0px', '-1px'],
                     opacity: [1, 1, 1, 0],
                     scale: [1, 0.9, 0.8, 0.8],
                     rotateX: ['0edg', '10deg', '0deg', '0deg'],
                     top: ['0vh', '0vh', '0vh', '50vh'],
                     transformOrigin: 'center center',
                     transition: {
-                        times:[0,0.25,0.25,0.25,0.25],
+                        duration: 1
                     }
                 }
             }

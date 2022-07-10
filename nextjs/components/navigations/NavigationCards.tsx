@@ -55,50 +55,54 @@ const NavigationCards = function () {
     const router = useRouter()
     const [animationName,setAnimationName] = useState('slideUp')
     const vars: Variants = FramerMotionVars.NavigationVars
-    const [checkedPath,setCheckedPath] = useState('')
-    useEffect(()=>{
-        if (!navigation.visible){
-            setCheckedPath('')
-        }
-    },[navigation.visible])
+    const setCheckedPath = navigation.setCheckedPath
     const pushRoute = async (index: number, path: string) => {
         if (path === navigation.route) {
             navigation.setVisible(false)
             return
         }
         setCheckedPath(path)
-        navigation.setVisible(false)
-        navigation.setRoute(path)
-        router.push(path)
     }
+    useEffect(()=>{
+        if (navigation.checkedPath===''){
+            return
+        }
+        navigation.setVisible(false)
+        navigation.setRoute(navigation.checkedPath)
+        router.push(navigation.checkedPath).then(()=>{
+            setCheckedPath('')
+        })
+    },[navigation.checkedPath])
     return (
         <LazyMotion features={domAnimation}>
             <AnimatePresence>
-                {navigation.visible&&checkedPath!==''&&<Mask
-                    initial={{
-                        opacity:1
-                    }}
-                    animate={{
-                        opacity:1,
-                        transition:{
-                            duration:0,
-                        }
-                    }}
-                    exit={{
-                        opacity:0,
-                        transition:{
-                            duration:0,
-                            delay:1
-                        }
-                    }}
-                >
-                </Mask>}
+                {/*{navigation.visible&&checkedPath!==''&&<Mask*/}
+                {/*    initial={{*/}
+                {/*        opacity:1*/}
+                {/*    }}*/}
+                {/*    animate={{*/}
+                {/*        opacity:1,*/}
+                {/*        transition:{*/}
+                {/*            duration:0,*/}
+                {/*        }*/}
+                {/*    }}*/}
+                {/*    exit={{*/}
+                {/*        opacity:0,*/}
+                {/*        transition:{*/}
+                {/*            duration:0,*/}
+                {/*            delay:1*/}
+                {/*        }*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*</Mask>}*/}
                 {navigation.visible&&navigation.BlogNavigationList
                     .map((props, index) =>
                         <CardBox
                             onClick={() => pushRoute(index, props.path)}
                             key={props.name}
                             initial={{
+                                transformPerspective:'100vh',
+                                scale:0.8,
                                 zIndex: 10 + index,
                                 top: 100 + (index * 10) + 'vh'
                             }}
@@ -107,7 +111,7 @@ const NavigationCards = function () {
                                 route:navigation.route,
                                 props:props,
                                 index:index,
-                                checkedPath:checkedPath
+                                checkedPath:navigation.checkedPath
                             }}
                             variants={vars}
                             animate={'cardAnimate'}

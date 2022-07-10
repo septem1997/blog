@@ -61,7 +61,8 @@ function MainLayout({children}: LayoutProps) {
                         custom={{
                             animationName:enterAnimation,
                             route:navigation.route,
-                            list:navigation.BlogNavigationList
+                            list:navigation.BlogNavigationList,
+                            checkedPath:navigation.checkedPath
                         }}
                         variants={vars}
                         initial="initial"

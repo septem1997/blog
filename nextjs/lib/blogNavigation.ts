@@ -1,7 +1,6 @@
 import Home from "../pages";
 import About from "../pages/about";
 import Gallery from "../pages/gallery";
-import {NextPage} from "next";
 import {proxy, useSnapshot} from "valtio";
 import {useEffect} from "react";
 import {useRouter} from "next/router";
@@ -29,8 +28,12 @@ const BlogNavigationList:BlogNavigationProp[] = [
 const navState = proxy({
     visible: false,
     // 维护一个冗余的route，便于和其他state在同一个tick里触发
-    route:''
+    route:'',
+    checkedPath:''
 })
+const setCheckedPath = function (checkedPath:string){
+    navState.checkedPath = checkedPath
+}
 const setVisible = function (visible: boolean) {
     navState.visible = visible
 }
@@ -56,6 +59,8 @@ const useBlogNavigation = () => {
         BlogNavigationList:BlogNavigationList,
         visible:snap.visible,
         route:snap.route,
+        checkedPath:snap.checkedPath,
+        setCheckedPath:setCheckedPath,
         setRoute:setRoute,
         setVisible:setVisible
     }
