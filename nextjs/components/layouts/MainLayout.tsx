@@ -5,13 +5,11 @@ import {
     domAnimation,
     LazyMotion,
     m,
-    useAnimation,
-    useAnimationControls,
     Variants
 } from "framer-motion";
 import {useRouter} from "next/router";
 import MenuNavigator from "../navigations/MenuNavigator";
-import BarbaVars from "../../lib/framerMotionVars";
+import FramerMotionVars from "../../lib/framerMotionVars";
 import NavigationCards from "../navigations/NavigationCards";
 import {useBlogNavigation} from "../../lib/blogNavigation";
 
@@ -30,7 +28,7 @@ function MainLayout({children}: LayoutProps) {
     const preVisible = usePrevState(navigation.visible)
     const preRoute = usePrevState(router.route)
     const [enterAnimation, setEnterAnimation] = useState('slideEnter')
-    const vars: Variants = BarbaVars.NavigationVars
+    const vars: Variants = FramerMotionVars.NavigationVars
     useEffect(()=>{
         if (navigation.visible) {
             navigation.setVisible(false)
@@ -46,7 +44,7 @@ function MainLayout({children}: LayoutProps) {
             '100':'scaleDown',
             '101':'',
             '110':'scaleDown',
-            '111':'scaleUp',
+            '111':'fadeIn',
         }
         const key = [navigation.visible,!!preVisible,routeChange].map(Number).join('')
         console.log('animation key',key)

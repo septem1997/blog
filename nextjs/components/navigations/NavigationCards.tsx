@@ -2,7 +2,7 @@ import {
     LazyMotion,
     AnimatePresence,
     domAnimation,
-    m, useAnimation, AnimationControls, useAnimationControls,
+    m, useAnimation, AnimationControls, useAnimationControls, Variants,
 } from "framer-motion";
 import {Transition, TransitionGroup} from 'react-transition-group'
 import {BlogNavigationProp, useBlogNavigation} from "../../lib/blogNavigation";
@@ -11,13 +11,13 @@ import {useSnapshot} from "valtio";
 import {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import gsap from "gsap";
+import FramerMotionVars from "../../lib/framerMotionVars";
 
 const Card = styled(m.div)`
-  border: 10px;
-  border-radius: 10px;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+  border-radius: 10px;
 `
 const CardTitle = styled.div`
   height: 28px;
@@ -27,128 +27,100 @@ const CardTitle = styled.div`
   left: -64px;
   width: 64px;
 `
-const CardBox = styled.div`
+const CardBox = styled(m.div)`
   position: absolute;
   cursor: pointer;
   top: 100vh;
   transform-origin: center;
   transform: perspective(100em) scale(0.8);
-
   &:hover {
     .card-title {
       color: #0070f3;
     }
   }
 `
+const Mask = styled(m.div)`
+  background: rgb(14,14,14);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index:10
+`
 
 const NavigationCards = function () {
     const navigation = useBlogNavigation();
     const router = useRouter()
-    const [lock, setLock] = useState(false)
+    const [animationName,setAnimationName] = useState('slideUp')
+    const vars: Variants = FramerMotionVars.NavigationVars
+    const [checkedPath,setCheckedPath] = useState('')
     useEffect(()=>{
-        setLock(false)
+        if (!navigation.visible){
+            setCheckedPath('')
+        }
     },[navigation.visible])
     const pushRoute = (index: number, path: string) => {
-        setLock(true)
-        for (let i = 0; i < navigation.BlogNavigationList.length; i++) {
-            const target = '#card' + i
-            if (i === index) {
-                gsap.timeline().fromTo(target, {
-                    zIndex: 19,
-                    scale: 0.8,
-                }, {
-                    scale: 0.9,
-                    top:'0vh',
-                    rotateX:'10deg',
-                    duration:0.25,
-                    borderRadius:'1em',
-                }).to(target,{
-                    scale: 1,
-                    rotateX:'0deg',
-                    duration:0.25,
-                    borderRadius:'0em',
-                }).to(target,{
-                    opacity: 0,
-                    duration:0.1,
-                })
-            } else {
-                gsap.to(target, {
-                    top: 100 + index * 10 + 'vh',
-                    duration: 0.25,
-                })
-            }
-        }
-        router.push(path)
-        // navigation.setVisible(false)
-    }
-    const cardEnter = (card: HTMLElement, index: number) => {
-        const props = navigation.BlogNavigationList[index]
-        const inList = router.route === props.path
-        if (inList) {
-            gsap.fromTo(card, {
-                opacity: 0,
-                top: index * 10 + 'vh',
-            }, {
-                delay: 0.25,
-                opacity: 1,
-                duration: 0.25,
-            })
-        } else {
-            gsap.to(card, {
-                top: index * 10 + 'vh',
-                duration: 0.25,
-                delay: 0.25 + index * 0.1
-            })
-        }
-    }
-    const cardLeave = (card: HTMLElement, index: number) => {
-        if (lock) {
+        if (path===router.route){
+            navigation.setVisible(false)
             return
         }
-        const props = navigation.BlogNavigationList[index]
-        const inList = router.route === props.path
-        if (inList) {
-            gsap.to(card, {
-                opacity: 0,
-                duration: 0.25
-            })
-        } else {
-            gsap.to(card, {
-                top: 80 + index * 10 + 'vh',
-                duration: 0.25,
-            })
-        }
+        setCheckedPath(path)
+        router.push(path)
     }
     return (
-        <TransitionGroup>{navigation.visible && navigation.BlogNavigationList
-            .map((props, index) =>
-                <Transition
-                    timeout={600}
-                    onEnter={(card: HTMLElement) => cardEnter(card, index)}
-                    onExit={(card: HTMLElement) => cardLeave(card, index)}
-                    key={props.path}
-                    addEndListener={(node, done) => {
-                        node.addEventListener('transitionend', done, false);
+        <LazyMotion features={domAnimation}>
+            <AnimatePresence>
+                {navigation.visible&&checkedPath!==''&&<Mask
+                    initial={{
+                        opacity:1
+                    }}
+                    animate={{
+                        opacity:1,
+                        transition:{
+                            duration:0,
+                        }
+                    }}
+                    exit={{
+                        opacity:0,
+                        transition:{
+                            duration:0,
+                            delay:1
+                        }
                     }}
                 >
-                    <CardBox
-                        onClick={() => pushRoute(index, props.path)}
-                        key={props.name}
-                        id={'card' + index}
-                        style={{
-                            zIndex: 10 + index,
-                            top: 100 + (index * 10) + 'vh'
-                        }}
-                    >
-                        <CardTitle className="card-title">
-                            {props.name}
-                        </CardTitle>
-                        <Card>
-                            {props.children()}
-                        </Card>
-                    </CardBox>
-                </Transition>
-            )}</TransitionGroup>
+
+                </Mask>}
+                {navigation.visible&&navigation.BlogNavigationList
+                    .map((props, index) =>
+                        <CardBox
+                            onClick={() => pushRoute(index, props.path)}
+                            key={props.name}
+                            initial={{
+                                zIndex: 10 + index,
+                                top: 100 + (index * 10) + 'vh'
+                            }}
+                            custom={{
+                                animationName:animationName,
+                                route:router.route,
+                                props:props,
+                                index:index,
+                                checkedPath:checkedPath
+                            }}
+                            variants={vars}
+                            animate={'cardAnimate'}
+                            exit={'cardExit'}
+                        >
+                            <CardTitle className="card-title">
+                                {props.name}
+                            </CardTitle>
+                            <Card>
+                                {props.children()}
+                            </Card>
+                        </CardBox>
+                    )}
+            </AnimatePresence>
+        </LazyMotion>
     )
 }
 
