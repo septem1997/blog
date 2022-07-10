@@ -1,5 +1,4 @@
 import {Variant, Variants} from "framer-motion";
-import {NextRouter, useRouter} from "next/router";
 import {BlogNavigationProp} from "./blogNavigation";
 
 const framerMotionVars = {

@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: youyuan;
+  src: url("https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/youyuan.ttf");
+}
 *{
   user-select: none;
 }
@@ -8,7 +12,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: serif;
+  font-family: youyuan,serif;
   background-color: rgb(14,14,14);
 }
 
