@@ -3,6 +3,8 @@ import About from "../pages/about";
 import Gallery from "../pages/gallery";
 import {NextPage} from "next";
 import {proxy, useSnapshot} from "valtio";
+import {useEffect} from "react";
+import {useRouter} from "next/router";
 
 declare type BlogNavigationProp = {
     name:string;
@@ -24,17 +26,37 @@ const BlogNavigationList:BlogNavigationProp[] = [
         children:Gallery
     }
 ]
-const visibleState = proxy({
-    visible: false
+const navState = proxy({
+    visible: false,
+    // 维护一个冗余的route，便于和其他state在同一个tick里触发
+    route:''
 })
 const setVisible = function (visible: boolean) {
-    visibleState.visible = visible
+    navState.visible = visible
+}
+const setRoute = function (route: string) {
+    navState.route = route
 }
 
 const useBlogNavigation = () => {
+    const router = useRouter();
+    useEffect(()=>{
+        if (navState.route !== router.route){
+            console.log('初始化路由',router.route)
+            navState.route = router.route
+        }
+    },[])
+    useEffect(()=>{
+        if (navState.route !== router.route){
+            navState.route = router.route
+        }
+    },[router.route])
+    const snap = useSnapshot(navState)
     return {
         BlogNavigationList:BlogNavigationList,
-        visible:useSnapshot(visibleState).visible,
+        visible:snap.visible,
+        route:snap.route,
+        setRoute:setRoute,
         setVisible:setVisible
     }
 }

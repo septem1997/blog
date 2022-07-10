@@ -1,5 +1,5 @@
 import {LayoutProps} from "next/dist/lib/app-layout";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {
     AnimatePresence,
     domAnimation,
@@ -26,7 +26,7 @@ function MainLayout({children}: LayoutProps) {
     const router = useRouter()
     const navigation = useBlogNavigation();
     const preVisible = usePrevState(navigation.visible)
-    const preRoute = usePrevState(router.route)
+    const preRoute = usePrevState(navigation.route)
     const [enterAnimation, setEnterAnimation] = useState('slideEnter')
     const vars: Variants = FramerMotionVars.NavigationVars
     useEffect(()=>{
@@ -35,21 +35,21 @@ function MainLayout({children}: LayoutProps) {
         }
     },[router.route])
     useEffect(() => {
-        const routeChange = router.route !== preRoute
+        const routeChange = navigation.route !== preRoute
         const animations:any = {
             '000':'slideEnter',
             '001':'slideEnter',
             '010':'scaleUp',
-            '011':'',
+            '011':'fadeIn',
             '100':'scaleDown',
             '101':'',
             '110':'scaleDown',
-            '111':'fadeIn',
+            '111':'scaleUp',
         }
         const key = [navigation.visible,!!preVisible,routeChange].map(Number).join('')
         console.log('animation key',key)
         setEnterAnimation(animations[key])
-    }, [navigation.visible,router.route]);
+    }, [navigation.visible,navigation.route]);
     return (
         <div className="layout-wrap">
             <LazyMotion features={domAnimation}>
@@ -60,7 +60,7 @@ function MainLayout({children}: LayoutProps) {
                         key={router.route}
                         custom={{
                             animationName:enterAnimation,
-                            route:router.route,
+                            route:navigation.route,
                             list:navigation.BlogNavigationList
                         }}
                         variants={vars}

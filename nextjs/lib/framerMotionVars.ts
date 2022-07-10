@@ -1,5 +1,5 @@
 import {Variant, Variants} from "framer-motion";
-import {NextRouter} from "next/router";
+import {NextRouter, useRouter} from "next/router";
 import {BlogNavigationProp} from "./blogNavigation";
 
 const framerMotionVars = {
@@ -87,15 +87,17 @@ const framerMotionVars = {
         }):Variant => {
             const index = params.list.findIndex( n =>n.path===params.route)
             const topInList = index*10+'vh'
+            console.log('page enter',params.animationName)
             switch (params.animationName) {
                 case "fadeIn":{
                     return {
                         opacity:[0,0,1],
-                        top: [0,1,1],
+                        top: [0,0,0],
                         scale: [0.8,1,1],
                         borderRadius: '0px',
                         transition: {
-                            times:[0,1,0.25]
+                            duration:10,
+                            times:[0,0.2,0.8]
                         },
                     }
                 }
@@ -117,6 +119,9 @@ const framerMotionVars = {
                         opacity: 1,
                         scale: 1,
                         borderRadius: '0px',
+                        transition: {
+                            duration: 0.25
+                        },
                         transitionEnd:{
                             transformOrigin: 'center center',
                         }
@@ -143,7 +148,8 @@ const framerMotionVars = {
             throw new Error('找不到对应动画')
         },
         pageExit: (params) => {
-            if (params.animationName==='scaleDown'){
+            console.log(params.animationName,'params.animationName')
+            if (params.animationName==='fadeIn'){
                 return {
                     top:'100vh',
                     transition:{
@@ -159,7 +165,7 @@ const framerMotionVars = {
                     top: ['0vh', '0vh', '0vh', '50vh'],
                     transformOrigin: 'center center',
                     transition: {
-                        duration: 1
+                        times:[0,0.25,0.25,0.25,0.25],
                     }
                 }
             }

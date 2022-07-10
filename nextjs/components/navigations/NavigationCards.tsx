@@ -12,6 +12,7 @@ import {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import gsap from "gsap";
 import FramerMotionVars from "../../lib/framerMotionVars";
+import {flushSync} from "react-dom";
 
 const Card = styled(m.div)`
   overflow: hidden;
@@ -60,12 +61,14 @@ const NavigationCards = function () {
             setCheckedPath('')
         }
     },[navigation.visible])
-    const pushRoute = (index: number, path: string) => {
-        if (path===router.route){
+    const pushRoute = async (index: number, path: string) => {
+        if (path === navigation.route) {
             navigation.setVisible(false)
             return
         }
         setCheckedPath(path)
+        navigation.setVisible(false)
+        navigation.setRoute(path)
         router.push(path)
     }
     return (
@@ -89,7 +92,6 @@ const NavigationCards = function () {
                         }
                     }}
                 >
-
                 </Mask>}
                 {navigation.visible&&navigation.BlogNavigationList
                     .map((props, index) =>
@@ -102,7 +104,7 @@ const NavigationCards = function () {
                             }}
                             custom={{
                                 animationName:animationName,
-                                route:router.route,
+                                route:navigation.route,
                                 props:props,
                                 index:index,
                                 checkedPath:checkedPath
