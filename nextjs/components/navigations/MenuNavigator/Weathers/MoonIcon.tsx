@@ -10,7 +10,7 @@ const MoonIcon = () => {
     repeatDelay:1
   }
   const animate = {
-    scale: [0.9, 1.2,0.9]
+    scale: [0.8, 1.4,0.8]
   }
   const starStyle:CSSProperties={
     position: 'absolute',

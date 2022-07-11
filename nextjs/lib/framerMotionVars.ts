@@ -111,7 +111,7 @@ const framerMotionVars = {
                         transformOrigin: 'center center',
                         transition: {
                             duration: 0.25
-                        },
+                        }
                     }
                 case "scaleUp":
                     return {
@@ -124,13 +124,13 @@ const framerMotionVars = {
                         },
                         transitionEnd:{
                             transformOrigin: 'center center',
-                        }
+                            transformPerspective: '0',
+                        },
                     }
                 case 'slideEnter':
                     return {
                         transitionTimingFunction: 'linear',
-                        translateZ: ['-1px', '0px'],
-                        transformPerspective: '100vh',
+                        transformPerspective: ['100vh','100vh','100vh','100vh'],
                         opacity: [0, 1, 1, 1],
                         scale: [0.8, 0.8, 1, 1],
                         borderRadius:['10px','10px','10px','0px'],
@@ -143,6 +143,7 @@ const framerMotionVars = {
                         },
                         transitionEnd:{
                             transformOrigin: 'center center',
+                            transformPerspective: '0',
                         }
                     }
             }
@@ -161,6 +162,7 @@ const framerMotionVars = {
                     opacity: [1, 1, 1, 0],
                     scale: [1, 0.9, 0.8, 0.8],
                     borderRadius:['0px','10px','10px','10px'],
+                    transformPerspective: ['100vh','100vh','100vh','100vh'],
                     rotateX: ['0edg', '10deg', '0deg', '0deg'],
                     top: ['0vh', '0vh', '0vh', '50vh'],
                     transformOrigin: 'center center',

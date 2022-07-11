@@ -17,12 +17,11 @@ const Card = styled(m.div)`
   border-radius: 10px;
 `
 const CardTitle = styled.div`
-  height: 28px;
-  line-height: 28px;
   color: white;
+  font-size: 20px;
   position: absolute;
-  left: -64px;
-  width: 64px;
+  left: -32px;
+  width: 20px;
 `
 const CardBox = styled(m.div)`
   position: absolute;

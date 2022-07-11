@@ -5,8 +5,10 @@ import { SunIcon,MoonIcon } from './Weathers'
 import NavButton from './NavButton'
 
 const MenuNavigator = function() {
-  const [dateText,setDateText] = useState('')
-  const [hourText,setHourText] = useState('')
+  const [timeText,setTimeText] = useState({
+    date:'',
+    hour:''
+  })
   const [weatherIcon,setWeatherIcon] = useState(SunIcon)
   const initWeather = ()=>{
     const now = dayjs()
@@ -39,8 +41,10 @@ const MenuNavigator = function() {
       final = '夜间'
     }
     const date = now.format(`MM/DD ${['日', '一', '二', '三', '四', '五', '六'][now.day()]}`)
-    setHourText(final)
-    setDateText(date)
+    setTimeText({
+      hour: final,
+      date: date
+    })
   }
   useEffect(()=>{
     initDate()
@@ -59,9 +63,9 @@ const MenuNavigator = function() {
       </div>
       <NavButton />
       <div className={styles.date}>
-        {dateText}
+        {timeText.date}
       </div>
-      <div className={styles.hour}>{hourText}</div>
+      <div className={styles.hour}>{timeText.hour}</div>
     </div>
   )
 }

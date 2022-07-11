@@ -44,3 +44,28 @@ a {
   height: 100%;
   transform: perspective(100vh);
 }
+.nav-title{
+  position: relative;
+  min-width: 280px;
+  text-align: center;
+  padding: 12px 0;
+  letter-spacing: 4px;
+  &:after{
+    z-index: 2;
+    color: white;
+    background: black;
+    padding: 2px 0;
+    font-size: 24px;
+    border-radius: 4px;
+  }
+  &:before{
+    content: ' ';
+    border-radius: 4px;
+    background: #f7f820;
+    transform: rotate(5deg);
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 24px);
+    z-index: -1;
+  }
+}

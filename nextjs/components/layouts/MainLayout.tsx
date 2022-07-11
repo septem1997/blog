@@ -1,5 +1,6 @@
 import {LayoutProps} from "next/dist/lib/app-layout";
 import {useEffect, useLayoutEffect, useRef, useState} from "react";
+import Script from 'next/script'
 import {
     AnimatePresence,
     domAnimation,
@@ -53,9 +54,7 @@ function MainLayout({children}: LayoutProps) {
     }, [navigation.visible,navigation.route]);
     return (
         <div className="layout-wrap">
-            <Head>
-                <script async={false} src="/iconfont/iconfont.js"></script>
-            </Head>
+            <Script src="/iconfont/iconfont.js"></Script>
             <LazyMotion features={domAnimation}>
                 <AnimatePresence
                     initial={false}
