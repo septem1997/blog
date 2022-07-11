@@ -1,7 +1,6 @@
 import MyIcon from '../../../general/MyIcon'
 import { motion } from 'framer-motion'
 import { CSSProperties } from 'react'
-import { scale } from 'style-value-types'
 
 const MoonIcon = () => {
   const transition = {

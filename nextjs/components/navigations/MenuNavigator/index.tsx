@@ -1,11 +1,8 @@
 import dayjs from 'dayjs'
-import MyIcon from '../../general/MyIcon'
-import styles from './style.module.css'
-import { useBlogNavigation } from '../../../lib/blogNavigation'
-import styled from 'styled-components'
-import { m } from 'framer-motion'
+import styles from './style.module.scss'
 import { useEffect, useState } from 'react'
 import { SunIcon,MoonIcon } from './Weathers'
+import NavButton from './NavButton'
 
 const MenuNavigator = function() {
   const [dateText,setDateText] = useState('')
@@ -60,6 +57,7 @@ const MenuNavigator = function() {
       <div className={styles['weather-box']}>
         {weatherIcon}
       </div>
+      <NavButton />
       <div className={styles.date}>
         {dateText}
       </div>
