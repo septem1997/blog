@@ -59,7 +59,7 @@ const framerMotionVars = {
                     top: [topInList, '0vh', '0vh', '0vh','0vh'],
                     transition: {
                         duration: 0.7,
-                        times:[0,0.15,0.4,0.72,1]
+                        times:[0,2/7,4/7,5/7,1]
                     },
                 }
             }else{

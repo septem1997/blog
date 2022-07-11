@@ -1,13 +1,18 @@
-export default function MyIcon({name}: { name: string }) {
+import { CSSProperties } from 'react'
+
+export default function MyIcon({name,style}: { name: string,style?:CSSProperties }) {
     return (
-        <svg style={{
+        <svg
+          aria-hidden="true"
+          style={{
             width: '1em',
             height: '1em',
             verticalAlign: '-0.15em',
             fill: 'currentcolor',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            ...style
         }}>
-            <use xlinkHref={name}/>
+            <use xlinkHref={'#'+name}/>
         </svg>
     )
 }

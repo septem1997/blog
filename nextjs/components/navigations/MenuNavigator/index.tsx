@@ -1,48 +1,71 @@
-import dayjs from "dayjs";
-import MyIcon from "../../general/MyIcon";
+import dayjs from 'dayjs'
+import MyIcon from '../../general/MyIcon'
 import styles from './style.module.css'
-import {useBlogNavigation} from "../../../lib/blogNavigation";
-const MenuNavigator = function () {
+import { useBlogNavigation } from '../../../lib/blogNavigation'
+import styled from 'styled-components'
+import { m } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { SunIcon,MoonIcon } from './Weathers'
+
+const MenuNavigator = function() {
+  const [dateText,setDateText] = useState('')
+  const [hourText,setHourText] = useState('')
+  const [weatherIcon,setWeatherIcon] = useState(SunIcon)
+  const initWeather = ()=>{
     const now = dayjs()
-    let hour = now.hour()
-    let hourText = ''
-    if (hour>=0&&hour<6){
-        hourText = '凌晨'
-    }else if (hour>=6&&hour<8){
-        hourText = '早晨'
-    }else if(hour>=8&&hour<12){
-        hourText = '上午'
-    }else if (hour>=12&&hour<14){
-        hourText = '午间'
-    }else if(hour>=14&&hour<17){
-        hourText = '下午'
-    }else if (hour>=17&&hour<20){
-        hourText = '傍晚'
-    }else {
-        hourText = '夜间'
+    const hour = now.hour()
+    let icon = SunIcon
+    if (hour >= 6 && hour < 18) {
+      icon = SunIcon
+    } else if (hour >= 18 || hour < 6) {
+      icon = MoonIcon
     }
-    const {setVisible,visible} = useBlogNavigation()
-    const date = now.format(`MM/DD ${['日','一','二','三','四','五','六'][now.day()]}`)
-    return (
-        <div className={styles.wrapper+' fixed right-0 top-0 z-20'}>
-            <div style={{color:"white"}} onClick={()=>{
-                setVisible(!visible)
-            }}>
-                菜单
-            </div>
-            <div className={styles['rainbow-circle']}>
-                {['c1','c2','c3','c4','c5'].map(c =>
-                    <div key={c} className={styles[c]}/>
-                )}
-            </div>
-            <div className={styles['weather-box']}>
-                <MyIcon name={'icon-sun'} />
-            </div>
-            <div className={styles.date}>
-                {date}
-            </div>
-            <div className={styles.hour}>{hourText}</div>
-        </div>
-)}
+    setWeatherIcon(icon)
+  }
+  const initDate = ()=>{
+    const now = dayjs()
+    const hour = now.hour()
+    let final = ''
+    if (hour >= 0 && hour < 6) {
+      final = '凌晨'
+    } else if (hour >= 6 && hour < 8) {
+      final = '早晨'
+    } else if (hour >= 8 && hour < 12) {
+      final = '上午'
+    } else if (hour >= 12 && hour < 14) {
+      final = '午间'
+    } else if (hour >= 14 && hour < 17) {
+      final = '下午'
+    } else if (hour >= 17 && hour < 20) {
+      final = '傍晚'
+    } else {
+      final = '夜间'
+    }
+    const date = now.format(`MM/DD ${['日', '一', '二', '三', '四', '五', '六'][now.day()]}`)
+    setHourText(final)
+    setDateText(date)
+  }
+  useEffect(()=>{
+    initDate()
+    initWeather()
+    setInterval(initDate,3600*1000)
+  },[])
+  return (
+    <div className={styles.wrapper + ' fixed right-0 top-0 z-20'}>
+      <div className={styles['rainbow-circle']}>
+        {['c1', 'c2', 'c3', 'c4', 'c5'].map(c =>
+          <div key={c} className={styles[c]} />,
+        )}
+      </div>
+      <div className={styles['weather-box']}>
+        {weatherIcon}
+      </div>
+      <div className={styles.date}>
+        {dateText}
+      </div>
+      <div className={styles.hour}>{hourText}</div>
+    </div>
+  )
+}
 
 export default MenuNavigator

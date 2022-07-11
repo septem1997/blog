@@ -12,6 +12,7 @@ import MenuNavigator from "../navigations/MenuNavigator";
 import FramerMotionVars from "../../lib/framerMotionVars";
 import NavigationCards from "../navigations/NavigationCards";
 import {useBlogNavigation} from "../../lib/blogNavigation";
+import Head from 'next/head'
 
 const usePrevState = function (value:any){
     const preRef = useRef()
@@ -52,6 +53,9 @@ function MainLayout({children}: LayoutProps) {
     }, [navigation.visible,navigation.route]);
     return (
         <div className="layout-wrap">
+            <Head>
+                <script async={false} src="/iconfont/iconfont.js"></script>
+            </Head>
             <LazyMotion features={domAnimation}>
                 <AnimatePresence
                     initial={false}
