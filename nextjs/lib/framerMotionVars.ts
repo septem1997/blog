@@ -133,6 +133,7 @@ const framerMotionVars = {
                         transformPerspective: '100vh',
                         opacity: [0, 1, 1, 1],
                         scale: [0.8, 0.8, 1, 1],
+                        borderRadius:['10px','10px','10px','0px'],
                         rotateX: ['0deg', '0deg', '10deg', '0deg'],
                         top: ['50vh', '20vh', '10vh', '0vh'],
                         transformOrigin: 'center bottom',
@@ -159,6 +160,7 @@ const framerMotionVars = {
                 return {
                     opacity: [1, 1, 1, 0],
                     scale: [1, 0.9, 0.8, 0.8],
+                    borderRadius:['0px','10px','10px','10px'],
                     rotateX: ['0edg', '10deg', '0deg', '0deg'],
                     top: ['0vh', '0vh', '0vh', '50vh'],
                     transformOrigin: 'center center',

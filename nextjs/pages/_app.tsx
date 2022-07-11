@@ -2,7 +2,7 @@ import '../assets/styles/globals.css'
 import type {AppProps} from 'next/app'
 import MainLayout from "../components/layouts/MainLayout";
 
-
+// todo 修改全局滚动条
 
 function MyApp({Component, pageProps, router}: AppProps) {
     return (
