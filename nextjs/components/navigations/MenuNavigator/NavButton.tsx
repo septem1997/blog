@@ -2,6 +2,7 @@ import { motion, TargetAndTransition, useAnimation, Variants } from 'framer-moti
 import styles from './style.module.scss'
 import styled from 'styled-components'
 import { useBlogNavigation } from '../../../lib/blogNavigation'
+import MyIcon from '../../general/MyIcon'
 
 const NavButton = () => {
   const vars = {
@@ -32,11 +33,13 @@ const NavButton = () => {
     }}
     onMouseOver={() => animate.start('slide')}
     className={styles.navBox}>
-    {[0, 1, 2].map(i =>
+    {!blogNavigation.visible?[0, 1, 2].map(i =>
       <motion.div
         custom={i}
         key={i}
-        variants={vars} initial={'initial'} animate={animate} />)}
+        variants={vars} initial={'initial'} animate={animate} />):
+      <MyIcon name={'icon-close'} />
+    }
   </div>
 }
 

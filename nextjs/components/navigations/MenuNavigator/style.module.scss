@@ -1,104 +1,182 @@
-.wrapper{
-    width: 420px;
-    height: 220px;
-    overflow: hidden;
+.wrapper {
+  width: 420px;
+  height: 220px;
+  overflow: hidden;
 }
-.c1{
-    border-width: 54px;
-    border-color: #f3ff1f;
-    background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.8));
-}
-.c2{
-    border-width: 38px;
-    border-color: #f5ab2b;
-}
-.c3{
-    border-width: 28px;
-    border-color: #fdf7e3;
-}
-.c4{
-    border-width: 20px;
-    border-color: #cd570d;
-}
-.c5{
-    border-width: 12px;
-    border-color: #fdf58b;
-}
-.date{
-    background: #29272c;
-    padding: 0 64px;
-    line-height: 32px;
-    height: 28px;
-    font-size: 28px;
-    color: white;
-    right: 120px;
-    top: 24px;
-    border-radius: 36px;
-    position: absolute;
-    font-weight: bold;
-    letter-spacing: 8px;
-    transform: scale(1,0.8);
-}
-.hour{
-    right: 200px;
-    top: 48px;
-    position: absolute;
-    color: white;
-    font-size: 42px;
-    -webkit-text-stroke: 1px #29272c;
-}
-.weather-box{
-    border-radius: 50%;
-    width: 82px;
-    height: 82px;
-    border: 6px solid currentColor;
-    position: absolute;
-    background: black;
-    right: 114px;
-    top: 96px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 56px;
-    color: #f7f820;
-}
-.navBox{
-    @extend .weather-box;
-    top: 150px;
-    width: 66px;
-    height: 66px;
-    right: 52px;
-    flex-direction: column;
-    cursor: pointer;
-    overflow: hidden;
 
-    div{
-        width: 60%;
-        height: 4px;
-        border-radius: 2px;
-        background: #f7f820;
-        margin: 5% 0;
+.c1 {
+  border-width: 54px;
+  border-color: #f3ff1f;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
+}
+
+.c2 {
+  border-width: 38px;
+  border-color: #f5ab2b;
+}
+
+.c3 {
+  border-width: 28px;
+  border-color: #fdf7e3;
+}
+
+.c4 {
+  border-width: 20px;
+  border-color: #cd570d;
+}
+
+.c5 {
+  border-width: 12px;
+  border-color: #fdf58b;
+}
+
+.date {
+  background: #29272c;
+  padding: 0 64px;
+  line-height: 32px;
+  height: 28px;
+  font-size: 28px;
+  color: white;
+  right: 120px;
+  top: 24px;
+  border-radius: 36px;
+  position: absolute;
+  font-weight: bold;
+  letter-spacing: 8px;
+  transform: scale(1, 0.8);
+}
+
+.hour {
+  right: 200px;
+  top: 48px;
+  position: absolute;
+  color: white;
+  font-size: 42px;
+  -webkit-text-stroke: 1px #29272c;
+}
+
+.weather-box {
+  border-radius: 50%;
+  width: 82px;
+  height: 82px;
+  border: 6px solid currentColor;
+  position: absolute;
+  background: black;
+  right: 114px;
+  top: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  color: #f7f820;
+}
+
+.navBox {
+  @extend .weather-box;
+  top: 150px;
+  width: 66px;
+  height: 66px;
+  right: 52px;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 44px;
+
+  div {
+    width: 60%;
+    height: 4px;
+    border-radius: 2px;
+    background: #f7f820;
+    margin: 5% 0;
+  }
+}
+.rainbow-circle {
+  position: absolute;
+  right: -28px;
+  top: -28px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rainbow-circle div {
+  position: absolute;
+  border-radius: 50%;
+  width: 260px;
+  height: 260px;
+  border-style: solid;
+  box-sizing: content-box;
+}
+
+@media screen and (max-width: 420px) {
+  .wrapper {
+    width: 210px;
+    height: 110px;
+  }
+  .rainbow-circle div {
+    width: 130px;
+    height: 130px;
+  }
+  .rainbow-circle {
+    right: -14px;
+    top: -14px;
+    width: 60px;
+    height: 60px;
+  }
+  .c1 {
+    border-width: 27px;
+  }
+  .c2 {
+    border-width: 19px;
+  }
+  .c3 {
+    border-width: 14px;
+  }
+  .c4 {
+    border-width: 10px;
+  }
+  .c5 {
+    border-width: 6px;
+  }
+
+  .date {
+    padding: 0 28px;
+    line-height: 15px;
+    height: 14px;
+    font-size: 14px;
+    right: 60px;
+    top: 12px;
+    border-radius: 18px;
+    letter-spacing: 4px;
+  }
+
+  .hour {
+    right: 98px;
+    top: 24px;
+    font-size: 24px;
+  }
+
+  .weather-box {
+    width: 41px;
+    height: 41px;
+    border: 3px solid currentColor;
+    right: 60px;
+    top: 48px;
+    font-size: 28px;
+  }
+
+  .navBox {
+    top: 74px;
+    width: 34px;
+    height: 34px;
+    right: 26px;
+    font-size: 22px;
+
+    div {
+      height: 3px;
+      border-radius: 2px;
     }
-}
-.weather-box img{
-    width: 80%;
-    height: 80%;
-}
-.rainbow-circle{
-    position: absolute;
-    right: -28px;
-    top: -28px;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.rainbow-circle div{
-    position: absolute;
-    border-radius: 50%;
-    width: 260px;
-    height: 260px;
-    border-style: solid;
-    box-sizing: content-box;
+  }
 }
