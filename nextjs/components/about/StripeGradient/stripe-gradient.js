@@ -556,7 +556,7 @@ export class Gradient {
     ((this.isLoadedClass = true),
       this.el.classList.add("isLoaded"),
       setTimeout(() => {
-        this.el.parentElement.classList.add("isLoaded");
+        this.el.parentElement&&this.el.parentElement.classList.add("isLoaded");
       }, 3e3));
   };
 

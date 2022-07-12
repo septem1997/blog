@@ -12,6 +12,9 @@ const Wrap =  styled(motion.div)`
   bottom: 5px;
   cursor: pointer;
   z-index: 20;
+  @media screen and (max-width: 420px) {
+    min-width: 180px;
+  }
 `
 const YellowStripe = styled(motion.div)`
   background: #f7f820;
@@ -29,6 +32,9 @@ const BlackStripe = styled(motion.div)`
   padding: 2px 0;
   font-size: 24px;
   border-radius: 4px;
+  @media screen and (max-width: 420px) {
+    font-size: 18px;
+  }
 `
 const NavTitle = ()=>{
   const vars = {
@@ -37,7 +43,10 @@ const NavTitle = ()=>{
         rotate: name==='yellow'?['5deg','10deg','5deg']:['0deg','-5deg','0deg'],
         transition:{
           duration:0.5,
-          times:[0,0.75,1]
+          times:[0,0.75,1],
+          type: "spring",
+          stiffness: 700,
+          damping: 10
         }
       }
     },

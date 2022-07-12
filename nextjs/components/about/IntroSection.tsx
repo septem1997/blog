@@ -20,7 +20,10 @@ const TypeText = styled.div`
 const MyTypeIt = styled(TypeIt)`
   color:black;
   z-index:1;
-  font-size: 68px;
+  font-size: 58px;
+  @media screen and (max-width: 420px) {
+    font-size: 38px;
+  }
 `
 const  IntroSection = ()=>{
   return <div>
