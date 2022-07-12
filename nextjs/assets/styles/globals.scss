@@ -45,27 +45,36 @@ a {
   transform: perspective(100vh);
 }
 .nav-title{
-  position: relative;
+  position: absolute;
   min-width: 280px;
   text-align: center;
-  padding: 12px 0;
   letter-spacing: 4px;
-  &:after{
-    z-index: 2;
-    color: white;
-    background: black;
-    padding: 2px 0;
-    font-size: 24px;
-    border-radius: 4px;
-  }
+  left: 10px;
+  bottom: 20px;
+  color: white;
+  padding: 2px 0;
+  font-size: 24px;
+  border-radius: 4px;
+  z-index: 2;
   &:before{
-    content: ' ';
+    content: normal;
     border-radius: 4px;
     background: #f7f820;
     transform: rotate(5deg);
     position: absolute;
     width: 100%;
-    height: calc(100% - 24px);
-    z-index: -1;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+  }
+  &:after{
+    content: normal;
+    border-radius: 4px;
+    background: black;
+    position: absolute;
+    width: 100%;
+    right: 0;
+    height: 100%;
+    z-index: 1;
   }
 }

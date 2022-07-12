@@ -7,7 +7,7 @@ const SunIcon = ()=>{
       rotate: [0, 0, 90, 90, 0],
     }}
     transition={{
-      duration: 10,
+      duration: 8,
       ease: "easeInOut",
       times: [0, 0.2, 0.5, 0.8, 1],
       repeat: Infinity,
