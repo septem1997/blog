@@ -19,6 +19,7 @@
     "react-dom": "18.2.0",
     "react-transition-group": "^4.4.2",
     "styled-components": "^5.3.5",
+    "typeit-react": "^2.5.4",
     "valtio": "^1.6.1"
   },
   "devDependencies": {

@@ -11,6 +11,7 @@ const Wrap =  styled(motion.div)`
   left: 5px;
   bottom: 5px;
   cursor: pointer;
+  z-index: 20;
 `
 const YellowStripe = styled(motion.div)`
   background: #f7f820;
@@ -29,7 +30,7 @@ const BlackStripe = styled(motion.div)`
   font-size: 24px;
   border-radius: 4px;
 `
-const NavTitle = ({children}:{children:string})=>{
+const NavTitle = ()=>{
   const vars = {
     hover(name:string) {
       return {
@@ -45,7 +46,12 @@ const NavTitle = ({children}:{children:string})=>{
   return (
     <Wrap
       onClick={()=>{
-        blogNavigation.setVisible(!blogNavigation.visible)
+        if (!blogNavigation.visible){
+          blogNavigation.setVisible(true)
+        }
+      }}
+      animate={{
+        opacity:blogNavigation.visible?0:1
       }}
       whileHover={'hover'}
     >
@@ -57,7 +63,7 @@ const NavTitle = ({children}:{children:string})=>{
         variants={vars}
         custom={'black'}
       >
-        {children}
+        {blogNavigation.pageTitle}
       </BlackStripe>
     </Wrap>
   )

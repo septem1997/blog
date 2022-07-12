@@ -13,7 +13,7 @@ import MenuNavigator from "../navigations/MenuNavigator";
 import FramerMotionVars from "../../lib/framerMotionVars";
 import NavigationCards from "../navigations/NavigationCards";
 import {useBlogNavigation} from "../../lib/blogNavigation";
-import Head from 'next/head'
+import NavTitle from '../navigations/NavTitle'
 
 const usePrevState = function (value:any){
     const preRef = useRef()
@@ -34,6 +34,17 @@ function MainLayout({children}: LayoutProps) {
     useEffect(()=>{
         if (navigation.visible) {
             navigation.setVisible(false)
+        }
+    },[router.route])
+    useEffect(()=>{
+        if (navigation.route !== router.route){
+            console.log('初始化路由',router.route)
+            navigation.setRoute(router.route)
+        }
+    },[])
+    useEffect(()=>{
+        if (navigation.route !== router.route){
+            navigation.setRoute(router.route)
         }
     },[router.route])
     useEffect(() => {
@@ -79,6 +90,7 @@ function MainLayout({children}: LayoutProps) {
             </LazyMotion>
             <NavigationCards/>
             <MenuNavigator/>
+            <NavTitle/>
         </div>
     );
 }
