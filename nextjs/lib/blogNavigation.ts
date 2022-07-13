@@ -1,9 +1,6 @@
 import Home from '../pages'
-import About from '../pages/about'
 import Gallery from '../pages/gallery'
 import { proxy, subscribe, useSnapshot } from 'valtio'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import IntroSection from '../components/about/IntroSection'
 
 declare type BlogNavigationProp = {

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { motion, ScrollMotionValues, useMotionValue } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import useWindowSize from '../../hooks/useWindowSize'
 
 const SectionBox = styled.div`
   height: 300vh;
@@ -21,12 +22,12 @@ const TextBox = styled(motion.div)`
   color: white;
 `
 const AssessmentSection = ({pageY}:{pageY:ScrollMotionValues})=>{
-  // todo 封装成useWindow
-  const  [screenHeight,setScreenHeight] = useState(1080)
+  const windowSize = useWindowSize()
   const translateX = useMotionValue('0px')
   const textRef = useRef(null)
   useEffect(()=>{
     pageY.scrollY.onChange((y)=>{
+      const screenHeight = windowSize.height
       const minHeight = 4*screenHeight-100
       const maxHeight = minHeight + 2*screenHeight
       let percent = 0
@@ -40,19 +41,10 @@ const AssessmentSection = ({pageY}:{pageY:ScrollMotionValues})=>{
       if (textRef.current){
         const div = textRef.current as HTMLDivElement
         const diff = div.scrollWidth - div.clientWidth
-        console.log(diff,percent)
         translateX.set(`translateX(-${percent*diff}px)`)
       }
     })
-    if (typeof window !== 'undefined') {
-      const handleResize = ()=> {
-        setScreenHeight(window.innerHeight);
-      }
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  },[])
+  },[windowSize.height])
   return <SectionBox>
     <TextBox ref={textRef} style={{transform:translateX}}>
       这里用一句话评价下自己，别太长，也别太短短短短短短短短短短短短~

@@ -9,10 +9,11 @@ import { motion, useElementScroll, useMotionValue, useViewportScroll } from 'fra
 import styled from 'styled-components'
 import AssessmentSection from '../components/about/AssessmentSection'
 const Scroller = styled.div`
-  overflow:scroll;
+  overflow-y:scroll;
+  overflow-x:hidden;
   ::-webkit-scrollbar {
 
-    display: none; /* Chrome Safari */
+    //display: none; /* Chrome Safari */
   }
 `
 const About: NextPage = () => {

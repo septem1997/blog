@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { motion, MotionValue, ScrollMotionValues, useInView, useMotionValue, useViewportScroll } from 'framer-motion'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
-
+import useWindowSize from '../../hooks/useWindowSize'
 const CareerHead = styled.div`
   position: sticky;
   top: 0;
@@ -90,11 +89,12 @@ const useScrollTop = (index:number,y:number,screenHeight:number)=>{
 }
 const CareerSection = ({pageY}:{pageY:ScrollMotionValues})=>{
   const [y,setY] = useState(0)
-  const  [screenHeight,setScreenHeight] = useState(1080)
+  const windowSize = useWindowSize()
   const TitleSize = useMotionValue('48px')
   const TitleHeight = useMotionValue(100)
   useEffect(()=>{
     pageY.scrollY.onChange((y)=>{
+      const screenHeight = windowSize.height
       setY(y)
       const limit = 2*screenHeight - 400
       let percent = 1
@@ -108,18 +108,10 @@ const CareerSection = ({pageY}:{pageY:ScrollMotionValues})=>{
       TitleSize.set(48+96*percent+'px')
       TitleHeight.set(100+percent*(screenHeight-400))
     })
-    if (typeof window !== 'undefined') {
-      const handleResize = ()=> {
-        setScreenHeight(window.innerHeight);
-      }
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  },[])
-  const blockScroll1 = useScrollTop(0,y,screenHeight)
-  const blockScroll2 = useScrollTop(1,y,screenHeight)
-  const blockScroll3 = useScrollTop(2,y,screenHeight)
+  },[TitleHeight, TitleSize, pageY.scrollY, windowSize.height])
+  const blockScroll1 = useScrollTop(0,y,windowSize.height)
+  const blockScroll2 = useScrollTop(1,y,windowSize.height)
+  const blockScroll3 = useScrollTop(2,y,windowSize.height)
   return<Container>
     <CareerHead>
       <HeadTitle style={{fontSize:TitleSize,height:TitleHeight}}>
