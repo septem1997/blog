@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { motion, MotionValue, ScrollMotionValues, useMotionValue, useViewportScroll } from 'framer-motion'
+import { motion, MotionValue, ScrollMotionValues, useInView, useMotionValue, useViewportScroll } from 'framer-motion'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 const CareerHead = styled.div`
   position: sticky;
@@ -32,6 +33,37 @@ const CareerBlock = styled(motion.div)`
   border-top: 1px solid black;
   background:white;
   position: absolute;
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;;
+  grid-template-rows: 100px auto;
+  justify-items: center;
+  align-items: center;
+  .content{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding: 28px;
+  }
+  .skills{
+    img{
+      width: 148px;
+      height: 148px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100px 32px auto;
+    .job{
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+    .skills{
+      display: none;
+    }
+    .content{
+      padding: 0 12px;
+      font-size: 14px;
+    }
+  }
 `
 const BlockWrap = styled.div`
   position: sticky;
@@ -97,20 +129,88 @@ const CareerSection = ({pageY}:{pageY:ScrollMotionValues})=>{
       </HeadTitle>
     </CareerHead>
     <BlockWrap>
-      <CareerBlock style={{top:blockScroll1,zIndex:1}} >
-        <BlockTitle>
-          深圳小笋
-        </BlockTitle>
+      <CareerBlock style={{top:blockScroll1}} >
+        <div className={'time'}>
+          2017.07 - 2018.06
+        </div>
+        <div className={'company-name'}>
+          小笋科技(深圳)有限公司
+        </div>
+        <div className={'job'}>
+          全栈开发工程师
+        </div>
+        <div className={'content'}>
+          <div>
+            岗位职责：负责公司共享单车小程序、微信公众号和商家运营推广平台的开发
+          </div>
+          <ul>
+            <li>基于WebSocket开发了客服系统(web端和小程序端)，可发送图片、语音和位置，具有聊天记录本地缓存和线上同步等功能</li>
+            <li>利用JAVA反射和注解实现了前端html代码自动生成，减少此类重复繁琐的开发工作，让团队更专注于其他特殊需求</li>
+            <li>基于POI和JAVA反射技术实现了excel表格导出自动化工具，市场部人员无需了解sql知识即可根据自己需求导出表格数据，极大减少繁杂多样的sql查询需求工作</li>
+          </ul>
+        </div>
+        <motion.div className={'skills'}>
+          <motion.img
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{opacity:0}}
+            src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/mysql.png'} />
+          <motion.img
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{opacity:0}}
+            src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/miniapp.png'} />
+          <motion.img
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{opacity:0}}
+            src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/java.png'} />
+        </motion.div>
       </CareerBlock>
-      <CareerBlock style={{top:blockScroll2,zIndex:2}} >
-        <BlockTitle>
-          珠海金刚
-        </BlockTitle>
+      <CareerBlock style={{top:blockScroll2}} >
+        <div className={'time'}>
+          2018.07 - 2019.02
+        </div>
+        <div className={'company-name'}>
+          珠海金刚科技有限公司
+        </div>
+        <div className={'job'}>
+          全栈开发工程师
+        </div>
+        <div className={'content'}>
+          <div>
+            岗位职责：主导赌场账房系统的前端开发，并负责数据报表统计导出相关后端业务
+          </div>
+          <ul>
+            <li>以非侵入式方式重写ajax请求，添加了拦截器，复用代码，提高接口调用开发效率</li>
+            <li>完善单据打印功能，利用Promise特性解决了打印顺序不同步的问题，封装打印公共方法，降低了同类需求开发成本</li>
+            <li>改进前端框架，独立编写了国际化多语言模块，使得公司产品可面向海外用户</li>
+            <li>改进数据报表导出功能，利用webSocket技术分离了数据报表导出等耗时操作</li>
+          </ul>
+        </div>
+        <motion.div className={'skills'}>
+          这里放些技术栈的logo，可以再加些动效
+        </motion.div>
       </CareerBlock>
-      <CareerBlock style={{top:blockScroll3,zIndex:3}} >
-        <BlockTitle>
-          珠海新海通
-        </BlockTitle>
+      <CareerBlock style={{top:blockScroll3}} >
+        <div className={'time'}>
+          2019.03 - 2020.04<br/>2021.07 - 2022.05
+        </div>
+        <div className={'company-name'}>
+          珠海新海通电子商务有限公司
+        </div>
+        <div className={'job'}>
+          Web前端工程师
+        </div>
+        <div className={'content'}>
+          这里写项目经历
+        </div>
+        <motion.div className={'skills'}>
+          这里放些技术栈的logo，可以再加些动效
+        </motion.div>
       </CareerBlock>
     </BlockWrap>
   </Container>
