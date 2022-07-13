@@ -7,6 +7,7 @@ import ProjectSection from '../components/about/ProjectSection'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useElementScroll, useMotionValue, useViewportScroll } from 'framer-motion'
 import styled from 'styled-components'
+import AssessmentSection from '../components/about/AssessmentSection'
 const Scroller = styled.div`
   overflow:scroll;
   ::-webkit-scrollbar {
@@ -26,6 +27,7 @@ const About: NextPage = () => {
       ref={scrollRef} className={styles.container}>
       <IntroSection />
       <CareerSection pageY={pageY} />
+      <AssessmentSection pageY={pageY} />
       <ProjectSection />
     </Scroller >
   )

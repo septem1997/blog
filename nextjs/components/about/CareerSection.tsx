@@ -38,10 +38,12 @@ const CareerBlock = styled(motion.div)`
   grid-template-rows: 100px auto;
   justify-items: center;
   align-items: center;
+  font-size: 20px;
   .content{
     grid-column-start: 1;
     grid-column-end: 3;
     padding: 28px;
+    font-size: 16px;
   }
   .skills{
     img{
@@ -70,10 +72,6 @@ const BlockWrap = styled.div`
   top: 100px;
   height: calc(100vh - 100px);
   overflow: hidden;
-`
-const BlockTitle = styled.div`
-  height: 100px;
-  width: 100%;
 `
 const useScrollTop = (index:number,y:number,screenHeight:number)=>{
   const finalY = useMotionValue(index*100)
