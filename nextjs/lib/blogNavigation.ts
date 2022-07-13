@@ -2,6 +2,7 @@ import Home from '../pages'
 import Gallery from '../pages/gallery'
 import { proxy, subscribe, useSnapshot } from 'valtio'
 import IntroSection from '../components/about/IntroSection'
+import PreviewResume from '../components/resume/PreviewResume'
 
 declare type BlogNavigationProp = {
   name: string;
@@ -17,6 +18,10 @@ const BlogNavigationList: BlogNavigationProp[] = [
     name: '相册',
     path: '/gallery',
     children: Gallery,
+  },{
+    name: '简历',
+    path: '/resume',
+    children: PreviewResume,
   }, {
     name: '关于',
     path: '/about',
@@ -31,11 +36,7 @@ const navState = proxy({
   pageTitle: '',
 })
 const unsubscribe = subscribe(navState, () => {
-    if (navState.route === '/about') {
-      navState.pageTitle = '关于'
-    } else {
-      navState.pageTitle = '首页'
-    }
+    navState.pageTitle = BlogNavigationList.find(n => n.path===navState.route)!.name
   },
 )
 const setCheckedPath = function(checkedPath: string) {

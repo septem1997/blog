@@ -3,15 +3,15 @@ import styles from '../assets/styles/Home.module.css'
 import Link from "next/link";
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-        <Link href={'/about'}>
-            跳到关于
-        </Link>
-        <div>
-            <Link href={'/gallery'}>
-                跳到相册
-            </Link>
-        </div>
+    <div className={styles.container} style={{background:'blue'}}>
+      <div className={'flex items-center flex-col'}>
+        <img
+          style={{width:'500px',height:'auto',margin:""}}
+          src={"https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/processing2.jpg"}/>
+        <h1 style={{color:'white',fontSize:'48px'}}>
+          在搬了
+        </h1>
+      </div>
     </div>
   )
 }

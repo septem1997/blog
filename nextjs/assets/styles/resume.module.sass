@@ -1,0 +1,138 @@
+.container
+  width: 100%
+  font-family: sans-serif
+.qrCode
+  margin-top: 48px
+  display: flex
+  padding: 1.5cm
+  flex-direction: row-reverse
+  .qrCode-box
+    margin-left: 64px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 128px
+    img
+      width: 100%
+      height: auto
+
+.content-head:not(:first-child)
+  margin-top: 24px
+.section
+  padding: 0 1.5cm
+  display: flex
+  margin-bottom: 12px
+  align-items: start
+  .title
+    margin-right: 24px
+    border: 2px solid #6686ae
+    border-radius: 4px
+    padding: 12px 24px
+    font-size: 18px
+    font-weight: bold
+    color: #2378e6
+  .content
+    flex: 1
+    border-bottom: 1px solid #eeebee
+    padding-bottom: 12px
+    .content-head
+      padding-bottom: 6px
+      display: flex
+      align-items: center
+      justify-content: space-between
+      font-weight: bold
+.page
+  background: white
+
+.pageHeader
+  display: flex
+  height: 5cm
+  background: rgb(244,245,252)
+  padding: 0 1.5cm
+  flex-wrap: wrap
+  margin-bottom: 2cm
+  .avatar
+    width: 4cm
+    position: relative
+    .avatar-overlay
+      width: 100%
+      height: 6.2cm
+      position: absolute
+      border-bottom-left-radius: 2cm
+      border-bottom-right-radius: 2cm
+      left: 0
+      top: 0
+      background: rgb(29,122,239)
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: stretch
+      .skill-icons
+        flex: 1
+        display: flex
+        align-items: center
+        justify-content: center
+        .skill-icon-box
+          color: white
+          width: 42px
+          text-align: center
+        img
+          width: 20px
+          height: 20px
+      .avatar-img-box
+        margin: 0.2cm
+        border-radius: 50%
+        width: 3.6cm
+        height: 3.6cm
+        background: #428eda
+        border: 0.1cm solid white
+        overflow: hidden
+        display: flex
+        align-items: center
+        justify-content: center
+        img
+          width: 110%
+          height: auto
+          padding-top: 12px
+  .personInfo
+    display: flex
+    justify-content: center
+    padding: 18px
+    flex-direction: column
+    flex: 4
+    .name
+      font-size: 32px
+      margin-bottom: 6px
+    .offer
+      padding: 12px 0
+      width: 100%
+      font-size: 16px
+      border-bottom-color: grey
+      border-bottom-width: 1px
+      border-bottom-style: dashed
+    .info
+      font-size: 15px
+      margin-top: 12px
+@media only screen and (max-width: 768px)
+  .page
+    width: 100%
+  .pageHeader
+    height: auto
+  .avatar
+    height: 6cm
+  .section
+    flex-direction: column
+    align-items: center
+  .content-head
+    flex-direction: column
+  .title
+    margin-bottom: 12px
+
+@media screen and (min-width: 769px)
+  .page
+    width: 21cm
+    //height: 297mm
+    margin: 0px auto
+    box-shadow: 0 13px 8px 0 rgba(0, 0, 0, .14), 0 8px 15px 7px rgba(0, 0, 0, .2), 0 6px 6px 0 rgba(0, 0, 0, .12)
+    overflow: hidden

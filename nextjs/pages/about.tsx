@@ -8,12 +8,13 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useElementScroll, useMotionValue, useViewportScroll } from 'framer-motion'
 import styled from 'styled-components'
 import AssessmentSection from '../components/about/AssessmentSection'
+import FootSection from '../components/about/FootSection'
 const Scroller = styled.div`
   overflow-y:scroll;
   overflow-x:hidden;
   ::-webkit-scrollbar {
 
-    //display: none; /* Chrome Safari */
+    display: none; /* Chrome Safari */
   }
 `
 const About: NextPage = () => {
@@ -29,7 +30,8 @@ const About: NextPage = () => {
       <IntroSection />
       <CareerSection pageY={pageY} />
       <AssessmentSection pageY={pageY} />
-      <ProjectSection />
+      <ProjectSection pageY={pageY}/>
+      <FootSection />
     </Scroller >
   )
 }

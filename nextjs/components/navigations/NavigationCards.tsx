@@ -16,6 +16,7 @@ const Card = styled.div`
   height: 100vh;
   border-radius: 10px;
   transform: translate3d(0, 0, 0);
+  box-shadow: 0px -2px 10px rgba(33,33,33,0.3);
 `
 const CardTitle = styled.div`
   color: white;

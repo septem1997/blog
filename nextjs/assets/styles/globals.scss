@@ -6,7 +6,7 @@
   src: url("https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/youyuan.ttf");
 }
 *{
-  user-select: none;
+  //user-select: none;
 }
 html,
 body {
@@ -76,4 +76,30 @@ a {
     height: 100%;
     z-index: 1;
   }
+}
+
+.circle {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  flex-flow: row;
+  align-content: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  background-color: #1e91d6;
+  border-radius: 200px;
+  pointer-events: none;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+}
+
+.cursorText {
+  flex: auto;
+  font-size: inherit;
+  pointer-events: none;
+  margin: auto;
 }

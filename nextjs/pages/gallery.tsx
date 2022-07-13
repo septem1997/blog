@@ -5,9 +5,14 @@ import Link from "next/link";
 const About: NextPage = () => {
   return (
     <div className={styles.container} style={{background:'red'}}>
-      <Link href={'/'}>
-          跳到首页
-      </Link>
+      <div className={'flex items-center flex-col'}>
+        <img
+          style={{width:'500px',height:'auto',margin:""}}
+          src={"https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/processing1.jpg"}/>
+        <h1 style={{color:'white',fontSize:'48px'}}>
+          施工中...
+        </h1>
+      </div>
     </div>
   )
 }
