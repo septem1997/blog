@@ -1,6 +1,8 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, LegacyRef } from 'react'
 
-export default function MyIcon({name,style}: { name: string,style?:CSSProperties }) {
+export default function MyIcon({name,style}:
+  { name: string,style?:CSSProperties }
+) {
     return (
         <svg
           aria-hidden="true"

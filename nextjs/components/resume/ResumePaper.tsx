@@ -31,7 +31,7 @@ const ResumePaper = ()=>{
         </div>
         <div className={styles.content}>
           <div className={styles['content-head']}>
-            <div>2020.09~2022.06</div>
+            <div></div>
             <div>吉林大学珠海学院</div>
             <div>软件工程 | 本科</div>
           </div>

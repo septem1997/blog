@@ -20,6 +20,9 @@ const TextBox = styled(motion.div)`
   letter-spacing: 4px;
   white-space: nowrap;
   color: white;
+  @media screen and (max-width: 420px) {
+    font-size: 68px;
+  }
 `
 const AssessmentSection = ({pageY}:{pageY:ScrollMotionValues})=>{
   const windowSize = useWindowSize()

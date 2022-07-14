@@ -22,6 +22,9 @@ const TitleBlock = styled(motion.div)`
   color: white;
   font-size: 128px;
   z-index: 1;
+  @media screen and (max-width: 420px) {
+    font-size: 48px;
+  }
 `
 const ProjectWrap = styled.div`
   height: 100vh;
@@ -100,11 +103,11 @@ const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
   let mouseYPosition = -10;
 
   if (mouse.x !== null) {
-    mouseXPosition = mouse.clientX|| -10;
+    mouseXPosition = mouse.clientX!;
   }
 
   if (mouse.y !== null) {
-    mouseYPosition = mouse.clientY|| -10;
+    mouseYPosition = mouse.clientY!;
   }
 
   const variants = {
@@ -123,7 +126,6 @@ const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
     },
     project: {
       opacity: 1,
-      // backgroundColor: "rgba(255, 255, 255, 0.6)",
       backgroundColor: "#fff",
       color: "#000",
       height: 80,
@@ -131,16 +133,6 @@ const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
       fontSize: "18px",
       x: mouseXPosition - 32,
       y: mouseYPosition - 32
-    },
-    contact: {
-      opacity: 1,
-      backgroundColor: "#FFBCBC",
-      color: "#000",
-      height: 64,
-      width: 64,
-      fontSize: "32px",
-      x: mouseXPosition - 48,
-      y: mouseYPosition - 48
     }
   };
 

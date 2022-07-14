@@ -7,7 +7,7 @@ const About: NextPage = () => {
     <div className={styles.container} style={{background:'red'}}>
       <div className={'flex items-center flex-col'}>
         <img
-          style={{width:'500px',height:'auto',margin:""}}
+          style={{width:'500px',height:'auto'}}
           src={"https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/processing1.jpg"}/>
         <h1 style={{color:'white',fontSize:'48px'}}>
           施工中...

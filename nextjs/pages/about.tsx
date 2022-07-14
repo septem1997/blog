@@ -5,7 +5,7 @@ import CareerSection from '../components/about/CareerSection'
 import { Scrollbars } from 'react-custom-scrollbars';
 import ProjectSection from '../components/about/ProjectSection'
 import { useEffect, useRef, useState } from 'react'
-import { motion, useElementScroll, useMotionValue, useViewportScroll } from 'framer-motion'
+import { motion, useElementScroll, useMotionValue, useScroll, useViewportScroll } from 'framer-motion'
 import styled from 'styled-components'
 import AssessmentSection from '../components/about/AssessmentSection'
 import FootSection from '../components/about/FootSection'
@@ -23,7 +23,7 @@ const About: NextPage = () => {
   // todo 经历模块参考https://www.appart.agency/
   // todo 开源作品模块参考RocketAir | Design + Strategy,往下滑动滚动的块一个个上来
   const scrollRef = useRef(null)
-  const pageY = useElementScroll(scrollRef)
+  const pageY = useScroll({container:scrollRef})
   return (
     <Scroller
       ref={scrollRef} className={styles.container}>
