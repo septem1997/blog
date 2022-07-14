@@ -64,7 +64,7 @@ const Line = styled(motion.div)`
 const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
   const windowSize = useWindowSize()
   const progress = useMotionValue('0%')
-  const translate = useMotionValue('translateX(0px)')
+  const translate = useMotionValue('translateX(-25%)')
   useEffect(() => {
     pageY.scrollY.onChange((y) => {
       const screenHeight = windowSize.height
@@ -87,7 +87,7 @@ const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
       } else {
         percent = 1
       }
-      translate.set(`translateX(-${percent*25}%)`)
+      translate.set(`translateX(-${percent*25}%) scale(${1+(1 - percent)/2})`)
     })
   }, [windowSize.height])
   const [cursorText, setCursorText] = useState("");
