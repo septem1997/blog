@@ -45,7 +45,7 @@ const ProjectWrap = styled.div`
       cursor: none;
     }
     .img-box {
-      max-width: 40vw;
+      max-width: 400px;
       width: auto;
 
       img {

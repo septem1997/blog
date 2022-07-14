@@ -36,8 +36,16 @@ const navState = proxy({
   pageTitle: '',
 })
 const unsubscribe = subscribe(navState, () => {
-    navState.pageTitle = BlogNavigationList.find(n => n.path===navState.route)!.name
-  },
+  if (navState.route === '/about') {
+    navState.pageTitle = '关于'
+  } else if (navState.route === '/') {
+    navState.pageTitle = '首页'
+  } else if (navState.route === '/resume') {
+    navState.pageTitle = '简历'
+  } else if (navState.route === '/gallery') {
+    navState.pageTitle = '相册'
+  }
+},
 )
 const setCheckedPath = function(checkedPath: string) {
   navState.checkedPath = checkedPath

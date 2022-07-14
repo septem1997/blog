@@ -46,8 +46,8 @@ const CareerBlock = styled(motion.div)`
   }
   .skills{
     img{
-      width: 148px;
-      height: 148px;
+      width: 98px;
+      height: 98px;
     }
   }
   @media screen and (max-width: 420px) {
