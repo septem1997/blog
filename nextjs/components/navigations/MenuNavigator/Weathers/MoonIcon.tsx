@@ -16,25 +16,20 @@ const MoonIcon = () => {
     position: 'absolute',
     fontSize:'25%'
   }
-  return <span
-    style={{
-      position: 'relative',
-
-    }}
-  >
+  return <>
     <MyIcon
       style={{
         position:'absolute',
-        left:'-0.6em',
-        bottom:'-0.6em',
+        left:'5%',
+        bottom:'5%',
         fontSize:'90%'
       }}
       name={'icon-moon'} />
     <motion.span
       style={{
         ...starStyle,
-        left:'0em',
-        bottom:'1em'
+        right:'10%',
+        bottom:'40%'
       }}
       animate={animate}
       transition={transition}
@@ -45,8 +40,8 @@ const MoonIcon = () => {
     <motion.span
       style={{
         ...starStyle,
-        left:'1em',
-        bottom:0
+        right:'40%',
+        top:'10%'
       }}
       animate={animate}
       transition={{
@@ -56,7 +51,7 @@ const MoonIcon = () => {
     >
         <MyIcon name={'icon-sijiaoxing'} />
     </motion.span>
-  </span>
+  </>
 }
 
 export default MoonIcon

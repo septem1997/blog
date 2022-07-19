@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import useMouse from "@react-hook/mouse-position";
 
 const SectionBox = styled.div`
-  height: 500vh;
+  height: 400vh;
   position: relative;
   background: black;
   cursor: none;
@@ -69,12 +69,12 @@ const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
     pageY.scrollY.onChange((y) => {
       const screenHeight = windowSize.height
       const minHeight = 7 * screenHeight - 100
-      const maxHeight = minHeight + 4 * screenHeight
+      const maxHeight = minHeight + 3 * screenHeight
       let percent = 0
       if (y < minHeight) {
         percent = 0
       } else if (y >= minHeight && y <= maxHeight) {
-        percent = (y - minHeight) / (4 * screenHeight)
+        percent = (y - minHeight) / (3 * screenHeight)
       } else {
         percent = 1
       }
@@ -163,7 +163,10 @@ const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
     </motion.div>
     <TitleBlock style={{transform:translate}}>
       <div>
-        PROJECT
+        <div style={{textAlign:'center',lineHeight:'80%',marginBottom:'24px'}}>
+          PERSONAL<br/>
+          PROJECT
+        </div>
         <Line style={{ width: progress }} />
       </div>
     </TitleBlock>

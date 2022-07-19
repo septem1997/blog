@@ -27,11 +27,11 @@ const NavButton = () => {
     onClick={()=>{
       blogNavigation.setVisible(!blogNavigation.visible)
     }}
-    onMouseOut={() => {
+    onMouseLeave={() => {
       animate.set('initial')
       animate.stop()
     }}
-    onMouseOver={() => animate.start('slide')}
+    onMouseEnter={() => animate.start('slide')}
     className={styles.navBox}>
     {!blogNavigation.visible?[0, 1, 2].map(i =>
       <motion.div
