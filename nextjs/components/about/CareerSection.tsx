@@ -45,10 +45,17 @@ const CareerBlock = styled(motion.div)`
     font-size: 16px;
   }
   .skills{
+    align-items: center;
     img{
-      width: 98px;
-      height: 98px;
+      width: 82px;
+      height: 82px;
     }
+  }
+  .skills,.content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   @media screen and (max-width: 420px) {
     grid-template-columns: 50% 50%;
@@ -87,13 +94,13 @@ const useScrollTop = (index:number,y:number,screenHeight:number)=>{
   }
   return finalY
 }
-const CareerSection = ({pageY}:{pageY:ScrollMotionValues})=>{
+const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
   const [y,setY] = useState(0)
   const windowSize = useWindowSize()
   const TitleSize = useMotionValue('48px')
   const TitleHeight = useMotionValue(100)
   useEffect(()=>{
-    pageY.scrollY.onChange((y)=>{
+    pageY.onChange((y)=>{
       const screenHeight = windowSize.height
       setY(y)
       const limit = 2*screenHeight - 400
@@ -108,7 +115,7 @@ const CareerSection = ({pageY}:{pageY:ScrollMotionValues})=>{
       TitleSize.set(48+96*percent+'px')
       TitleHeight.set(100+percent*(screenHeight-400))
     })
-  },[TitleHeight, TitleSize, pageY.scrollY, windowSize.height])
+  },[TitleHeight, TitleSize, pageY, windowSize.height])
   const blockScroll1 = useScrollTop(0,y,windowSize.height)
   const blockScroll2 = useScrollTop(1,y,windowSize.height)
   const blockScroll3 = useScrollTop(2,y,windowSize.height)

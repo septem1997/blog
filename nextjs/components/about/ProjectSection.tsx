@@ -1,5 +1,5 @@
 import useWindowSize from '../../hooks/useWindowSize'
-import { motion, ScrollMotionValues, useMotionValue } from 'framer-motion'
+import { motion, MotionValue, ScrollMotionValues, useMotionValue } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import useMouse from "@react-hook/mouse-position";
@@ -12,7 +12,6 @@ const SectionBox = styled.div`
 `
 const TitleBlock = styled(motion.div)`
   height: 100vh;
-  width: 100%;
   position: sticky;
   top: 0;
   display: flex;
@@ -61,12 +60,12 @@ const Line = styled(motion.div)`
   width: 0%;
   background: currentColor;
 `
-const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
+const ProjectSection = ({ pageY }: { pageY: MotionValue<number> }) => {
   const windowSize = useWindowSize()
   const progress = useMotionValue('0%')
   const translate = useMotionValue('translateX(-25%)')
   useEffect(() => {
-    pageY.scrollY.onChange((y) => {
+    pageY.onChange((y) => {
       const screenHeight = windowSize.height
       const minHeight = 7 * screenHeight - 100
       const maxHeight = minHeight + 3 * screenHeight
@@ -87,7 +86,7 @@ const ProjectSection = ({ pageY }: { pageY: ScrollMotionValues }) => {
       } else {
         percent = 1
       }
-      translate.set(`translateX(-${percent*25}%) scale(${1+(1 - percent)/2})`)
+      translate.set(`translateX(-${percent*25}%) scale(${0.5+(1 - percent)/2})`)
     })
   }, [windowSize.height])
   const [cursorText, setCursorText] = useState("");

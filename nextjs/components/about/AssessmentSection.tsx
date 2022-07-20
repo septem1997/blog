@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { motion, ScrollMotionValues, useMotionValue } from 'framer-motion'
+import { motion, MotionValue, ScrollMotionValues, useMotionValue } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import useWindowSize from '../../hooks/useWindowSize'
 
@@ -12,24 +12,27 @@ const TextBox = styled(motion.div)`
   height: 100vh;
   display: flex;
   line-height: 100vh;
-  margin: 0 48px;
+  padding: 0 48px;
   position: sticky;
   top: 0;
   left: 0;
-  font-size: 98px;
-  letter-spacing: 4px;
-  white-space: nowrap;
-  color: white;
+  overflow-x: hidden;
+  div{
+    font-size: 98px;
+    letter-spacing: 4px;
+    white-space: nowrap;
+    color: white;
+  }
   @media screen and (max-width: 420px) {
     font-size: 68px;
   }
 `
-const AssessmentSection = ({pageY}:{pageY:ScrollMotionValues})=>{
+const AssessmentSection = ({pageY}:{pageY:MotionValue<number>})=>{
   const windowSize = useWindowSize()
   const translateX = useMotionValue('0px')
   const textRef = useRef(null)
   useEffect(()=>{
-    pageY.scrollY.onChange((y)=>{
+    pageY.onChange((y)=>{
       const screenHeight = windowSize.height
       const minHeight = 4*screenHeight-100
       const maxHeight = minHeight + 2*screenHeight
@@ -49,8 +52,10 @@ const AssessmentSection = ({pageY}:{pageY:ScrollMotionValues})=>{
     })
   },[windowSize.height])
   return <SectionBox>
-    <TextBox ref={textRef} style={{transform:translateX}}>
-      这里用一句话评价下自己，别太长，也别太短短短短短短短短短短短短~
+    <TextBox ref={textRef}>
+      <motion.div style={{transform:translateX}}>
+        这里用一句话评价下自己，别太长，也别太短短短短短短短短短短短短~
+      </motion.div>
     </TextBox>
   </SectionBox>
 }

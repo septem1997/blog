@@ -9,26 +9,26 @@ import { motion, useElementScroll, useMotionValue, useScroll, useViewportScroll 
 import styled from 'styled-components'
 import AssessmentSection from '../components/about/AssessmentSection'
 import FootSection from '../components/about/FootSection'
-const Scroller = styled.div`
-  overflow-y:scroll;
-  overflow-x:hidden;
-  ::-webkit-scrollbar {
-
-    display: none; /* Chrome Safari */
-  }
-`
 const About: NextPage = () => {
   const scrollRef = useRef(null)
-  const pageY = useScroll({container:scrollRef})
+  // const pageY = useScroll({container:scrollRef})
+  const pageY = useMotionValue(0)
   return (
-    <Scroller
-      ref={scrollRef} className={styles.container}>
+    <Scrollbars
+      autoHide
+      universal={true}
+      onScroll={()=>{
+        const scrollBars = scrollRef.current! as Scrollbars
+        pageY.set(scrollBars.getScrollTop())
+      }}
+      className={styles.container}
+      ref={scrollRef}>
       <IntroSection />
       <CareerSection pageY={pageY} />
       <AssessmentSection pageY={pageY} />
       <ProjectSection pageY={pageY}/>
       <FootSection />
-    </Scroller >
+    </Scrollbars >
   )
 }
 
