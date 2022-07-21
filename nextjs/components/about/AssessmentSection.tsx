@@ -54,7 +54,7 @@ const AssessmentSection = ({pageY}:{pageY:MotionValue<number>})=>{
   return <SectionBox>
     <TextBox ref={textRef}>
       <motion.div style={{transform:translateX}}>
-        这里用一句话评价下自己，别太长，也别太短短短短短短短短短短短短~
+        热爱编程，熟悉常见的数据结构和算法，善用编程解决生活中的问题，独立全栈开发完成产品
       </motion.div>
     </TextBox>
   </SectionBox>

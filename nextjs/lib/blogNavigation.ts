@@ -5,24 +5,34 @@ import IntroSection from '../components/about/IntroSection'
 import PreviewResume from '../components/resume/PreviewResume'
 
 declare type BlogNavigationProp = {
+  isMainPage:boolean,
   name: string;
   path: string;
   children: any
 }
 const BlogNavigationList: BlogNavigationProp[] = [
   {
+    isMainPage:false,
     name: '首页',
     path: '/',
     children: Home,
+  },{
+    isMainPage:false,
+    name: '碎笔',
+    path: '/post',
+    children: Home,
   }, {
+    isMainPage:false,
     name: '相册',
     path: '/gallery',
     children: Gallery,
   },{
+    isMainPage:true,
     name: '简历',
     path: '/resume',
     children: PreviewResume,
   }, {
+    isMainPage:true,
     name: '关于',
     path: '/about',
     children: IntroSection,
@@ -36,7 +46,7 @@ const navState = proxy({
   pageTitle: '',
 })
 const unsubscribe = subscribe(navState, () => {
-  navState.pageTitle = BlogNavigationList.find(n => navState.route === n.path)!.name
+  navState.pageTitle = BlogNavigationList.find(n => navState.route === n.path)?.name||''
 },
 )
 const setCheckedPath = function(checkedPath: string) {

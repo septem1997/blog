@@ -1,5 +1,13 @@
 import styled from 'styled-components'
-import { motion, MotionValue, ScrollMotionValues, useInView, useMotionValue, useViewportScroll } from 'framer-motion'
+import {
+  motion,
+  MotionValue,
+  ScrollMotionValues,
+  useInView,
+  useMotionValue,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import useWindowSize from '../../hooks/useWindowSize'
 const CareerHead = styled.div`
@@ -49,6 +57,7 @@ const CareerBlock = styled(motion.div)`
     img{
       width: 82px;
       height: 82px;
+      margin-bottom: 12px;
     }
   }
   .skills,.content{
@@ -81,6 +90,11 @@ const BlockWrap = styled.div`
 `
 const useScrollTop = (index:number,y:number,screenHeight:number)=>{
   const finalY = useMotionValue(index*100)
+  const translateX = useTransform(
+    finalY,
+    [screenHeight-(3-index)*100, index*100],
+    [200, 0]
+  )
   const blockHeight = screenHeight - 400
   const min = screenHeight+index*blockHeight
   const max = min+blockHeight
@@ -92,7 +106,10 @@ const useScrollTop = (index:number,y:number,screenHeight:number)=>{
   }else if (y > max){
     finalY.set(index*100)
   }
-  return finalY
+  return {
+    translateX:translateX,
+    scrollTop:finalY
+  }
 }
 const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
   const [y,setY] = useState(0)
@@ -116,9 +133,9 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
       TitleHeight.set(100+percent*(screenHeight-400))
     })
   },[TitleHeight, TitleSize, pageY, windowSize.height])
-  const blockScroll1 = useScrollTop(0,y,windowSize.height)
-  const blockScroll2 = useScrollTop(1,y,windowSize.height)
-  const blockScroll3 = useScrollTop(2,y,windowSize.height)
+  const { scrollTop:blockScroll1,translateX:translateX1 } = useScrollTop(0,y,windowSize.height)
+  const { scrollTop:blockScroll2,translateX:translateX2 } = useScrollTop(1,y,windowSize.height)
+  const { scrollTop:blockScroll3,translateX:translateX3 } = useScrollTop(2,y,windowSize.height)
   return<Container>
     <CareerHead>
       <HeadTitle style={{fontSize:TitleSize,height:TitleHeight}}>
@@ -146,26 +163,17 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
             <li>基于POI和JAVA反射技术实现了excel表格导出自动化工具，市场部人员无需了解sql知识即可根据自己需求导出表格数据，极大减少繁杂多样的sql查询需求工作</li>
           </ul>
         </div>
-        <motion.div className={'skills'}>
-          <motion.img
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            style={{opacity:0}}
-            src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/mysql.png'} />
-          <motion.img
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            style={{opacity:0}}
-            src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/miniapp.png'} />
-          <motion.img
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            style={{opacity:0}}
-            src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/java.png'} />
-        </motion.div>
+        <div
+          className={'skills'}>
+          {['wechat-logo.png','miniapp.png','java.png'].map((src,index) =>
+            <motion.img
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              key={src}
+              style={{opacity:0,translateX:translateX1.get()*(1+index*0.5)+'px'}}
+              src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/'+src} />
+          )}
+        </div>
       </CareerBlock>
       <CareerBlock style={{top:blockScroll2}} >
         <div className={'time'}>
@@ -188,9 +196,15 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
             <li>改进数据报表导出功能，利用webSocket技术分离了数据报表导出等耗时操作</li>
           </ul>
         </div>
-        <motion.div className={'skills'}>
-          这里放些技术栈的logo，可以再加些动效
-        </motion.div>
+        <div
+          className={'skills'}>
+          {['jq-logo.png','spring-logo.png','vue-logo.png'].map((src,index) =>
+            <motion.img
+              key={src}
+              style={{translateX:translateX2.get()*(1+index*0.5)+'px'}}
+              src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/'+src} />
+          )}
+        </div>
       </CareerBlock>
       <CareerBlock style={{top:blockScroll3}} >
         <div className={'time'}>
@@ -205,9 +219,15 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
         <div className={'content'}>
           这里写项目经历
         </div>
-        <motion.div className={'skills'}>
-          这里放些技术栈的logo，可以再加些动效
-        </motion.div>
+        <div
+          className={'skills'}>
+          {['vue-logo.png','react-logo.png','electron-logo.png'].map((src,index) =>
+            <motion.img
+              key={src}
+              style={{translateX:translateX3.get()*(1+index*0.5)+'px'}}
+              src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/'+src} />
+          )}
+        </div>
       </CareerBlock>
     </BlockWrap>
   </Container>

@@ -30,7 +30,7 @@ const SunCloudIcon = ()=>{
         transition:{
           ease:'linear',
           repeatDelay:0,
-          duration:4,
+          duration:6,
           repeat: Infinity,
         }
       }}
