@@ -101,7 +101,7 @@ const Post = (props:any) => {
   </PostWrap>
 }
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:8888/api/article/list')
+  const res = await fetch('http://127.0.0.1:8888/api/article/list')
   const json = await res.json()
   return {
     props: {
