@@ -50,7 +50,8 @@ const CareerBlock = styled(motion.div)`
     grid-column-start: 1;
     grid-column-end: 3;
     padding: 28px;
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 32px;
   }
   .skills{
     align-items: center;
@@ -170,7 +171,7 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               key={src}
-              style={{opacity:0,translateX:translateX1.get()*(1+index*0.5)+'px'}}
+              style={{opacity:0,translateY:translateX1.get()*(1+index)+'px'}}
               src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/'+src} />
           )}
         </div>
@@ -201,7 +202,7 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
           {['jq-logo.png','spring-logo.png','vue-logo.png'].map((src,index) =>
             <motion.img
               key={src}
-              style={{translateX:translateX2.get()*(1+index*0.5)+'px'}}
+              style={{translateY:translateX2.get()*(1+index)+'px'}}
               src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/'+src} />
           )}
         </div>
@@ -217,14 +218,20 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
           Web前端工程师
         </div>
         <div className={'content'}>
-          这里写项目经历
+          <ul>
+            <li>使用react + echarts图表插件开发公司经营数据可视化看板，响应式布局设计，完美适配高分屏</li>
+            <li>重构基于electron重构pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
+            <li>搭建基于Vue + Antd UI库的商品后台管理系统，抽象业务逻辑封装通用组件，统一封装API请求接口</li>
+            <li>使用Vue3.0+electron开发IM系统(仿钉钉设计)，实现了消息多端同步，消息本地持久化（indexDB），文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
+            <li>开发低代码OA审批系统（仿飞书设计），实现了拖拽生成动态表单，表单嵌套，审批节点分支流程创建，流程分支条件判断，表单与节点数据联动等功能</li>
+          </ul>
         </div>
         <div
           className={'skills'}>
           {['vue-logo.png','react-logo.png','electron-logo.png'].map((src,index) =>
             <motion.img
               key={src}
-              style={{translateX:translateX3.get()*(1+index*0.5)+'px'}}
+              style={{translateY:translateX3.get()*(1+index)+'px'}}
               src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/'+src} />
           )}
         </div>

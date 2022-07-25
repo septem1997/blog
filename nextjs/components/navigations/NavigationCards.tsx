@@ -50,6 +50,7 @@ const NavigationCards = function() {
       navigation.setVisible(false)
       return
     }
+    await router.prefetch(path)
     setCheckedPath(path)
   }
   useEffect(() => {

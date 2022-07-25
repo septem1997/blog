@@ -5,13 +5,13 @@ import CareerSection from '../components/about/CareerSection'
 import { Scrollbars } from 'react-custom-scrollbars';
 import ProjectSection from '../components/about/ProjectSection'
 import { useEffect, useRef, useState } from 'react'
-import { motion, useElementScroll, useMotionValue, useScroll, useViewportScroll } from 'framer-motion'
+import { motion, useElementScroll, useMotionValue, useViewportScroll } from 'framer-motion'
 import styled from 'styled-components'
 import AssessmentSection from '../components/about/AssessmentSection'
 import FootSection from '../components/about/FootSection'
+import Head from 'next/head'
 const About: NextPage = () => {
   const scrollRef = useRef(null)
-  // const pageY = useScroll({container:scrollRef})
   const pageY = useMotionValue(0)
   return (
     <Scrollbars
@@ -23,6 +23,9 @@ const About: NextPage = () => {
       }}
       className={styles.container}
       ref={scrollRef}>
+      <Head>
+        <title>关于</title>
+      </Head>
       <IntroSection />
       <CareerSection pageY={pageY} />
       <AssessmentSection pageY={pageY} />

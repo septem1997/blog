@@ -58,8 +58,8 @@ const framerMotionVars = {
                     rotateX: ['0deg','0deg', '10deg', '0deg','0deg'],
                     top: [topInList, '0vh', '0vh', '0vh','0vh'],
                     transition: {
-                        duration: 0.7,
-                        times:[0,2/7,4/7,5/7,1]
+                        duration: 1.2,
+                        times:[0,2/12,4/12,5/12,1]
                     },
                 }
             }else{

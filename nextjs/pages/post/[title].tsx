@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { Scrollbars } from 'react-custom-scrollbars'
+import Head from 'next/head'
 const ContentWrap = styled(Scrollbars)`
   background: #e6e6e6;
   position: relative;
@@ -31,6 +32,10 @@ const PostByTitle = (props:any)=>{
     autoHide
     universal={true}
   >
+
+    <Head>
+      <title>{props.json.data.title}</title>
+    </Head>
     <div className={'main'}>
       <h1>
         {props.json.data.title}

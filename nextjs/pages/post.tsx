@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Scrollbars } from 'react-custom-scrollbars'
 import Link from 'next/link'
+import Head from 'next/head'
 
 const PostWrap = styled(Scrollbars)`
   width: 100%;
@@ -73,6 +74,9 @@ const Post = (props:any) => {
     autoHide
     universal={true}
   >
+    <Head>
+      <title>碎笔</title>
+    </Head>
     <div className={'header'}>
       <img src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/light.jpg'}/>
     </div>

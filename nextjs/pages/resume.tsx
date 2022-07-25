@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { Scrollbars } from 'react-custom-scrollbars';
 import ResumePaper from '../components/resume/ResumePaper'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 const DynamicStripe = dynamic(() => import('../components/about/StripeGradient'), {
   ssr: false,
 })
@@ -10,6 +11,9 @@ const Resume: NextPage = () => {
     <Scrollbars
       universal={true}>
       <div style={{position:'sticky',left:0,top:0,zIndex:-1}}>
+        <Head>
+          <title>简历</title>
+        </Head>
         <DynamicStripe
           style={{zIndex:-1,position:'absolute',left:0,top:0,width:'100vw',height:'100vh'}}
           colors={["#1976D2", "#03A9F4", "#2196F3"]} />

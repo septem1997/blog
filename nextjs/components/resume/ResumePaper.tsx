@@ -21,19 +21,7 @@ const ResumePaper = ()=>{
             25岁 |
             750627595@qq.com |
             微信:septem1997 <br/>
-            github：github.com/septem1997
-          </div>
-        </div>
-      </div>
-      <div className={styles.section}>
-        <div className={styles.title}>
-          教育<br />背景
-        </div>
-        <div className={styles.content}>
-          <div className={styles['content-head']}>
-            <div></div>
-            <div>吉林大学珠海学院</div>
-            <div>软件工程 | 本科</div>
+            <div>吉林大学珠海学院 - 软件工程 | 本科</div>
           </div>
         </div>
       </div>
@@ -43,17 +31,19 @@ const ResumePaper = ()=>{
         </div>
         <div className={styles.content}>
           <div className={styles['content-head']}>
-            <div>2019.03~2020.03</div>
+            <div>2019.03~2022.05</div>
             <div>珠海新海通电子商务有限公司</div>
             <div>web前端工程师</div>
           </div>
           <div>
-            <strong>岗位职责：</strong>担任前端主力开发，负责公司前端商城等项目的技术选型，框架搭建和业务开发
+            <strong>岗位职责：</strong>担任前端主力开发，负责公司前端项目的技术选型，框架搭建和业务开发
             <div><strong>主要工作：</strong></div>
             <ul>
-              <li>基于react搭配echarts图表插件开发了公司经营数据可视化看板，响应式布局设计，完美适配高分屏</li>
-              <li>基于electron重构pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
-              <li>基于Vue和Ant Design UI搭建了前后端分离的商品后台管理系统，复用代码，统一封装API请求接口</li>
+              <li>使用react + echarts图表插件开发公司经营数据可视化看板，响应式布局设计，完美适配高分屏</li>
+              <li>重构基于electron重构pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
+              <li>搭建基于Vue + Antd UI库的商品后台管理系统，抽象业务逻辑封装通用组件，统一封装API请求接口</li>
+              <li>使用Vue3.0+electron开发IM系统(仿钉钉设计)，实现了消息多端同步，消息本地持久化（indexDB），文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
+              <li>开发低代码OA审批系统（仿飞书设计），实现了拖拽生成动态表单，表单嵌套，审批节点分支流程创建，流程分支条件判断，表单与节点数据联动等功能</li>
             </ul>
           </div>
 
@@ -124,7 +114,7 @@ const ResumePaper = ()=>{
             <li>编程语言：HTML5，CSS3，JavaScript，TypeScript，Java，Dart</li>
             <li>前端框架：Vue，React，Electron，jQuery，Flutter，小程序</li>
             <li>后端框架：Node.js，SpringBoot</li>
-            <li>其他：Git，PS，WebStorm，MySql，WebSocket，Linux，Sass</li>
+            <li>其他：Git，PS，MySql，WebSocket，Linux</li>
           </ul>
         </div>
       </div>
@@ -143,7 +133,7 @@ const ResumePaper = ()=>{
       </div>
       <div className={styles.qrCode}>
         <div className={styles['qrCode-box']}>
-          <img src="https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/https___septem1997.cn.png"/>
+          <img src="https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/qrCode.png"/>
           <div>线上简历</div>
         </div>
       </div>

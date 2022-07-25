@@ -30,10 +30,10 @@ const ProjectWrap = styled.div`
   width: 100%;
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: row-reverse;
 
   .project {
+    position: absolute;
+    right: 20%;
     margin: 0 24px;
     color: white;
     display: flex;
@@ -50,6 +50,13 @@ const ProjectWrap = styled.div`
       img {
         width: 100%;
         height: auto;
+      }
+    }
+    @media screen and (max-width: 420px) {
+      right: 5%;
+      .img-box {
+        max-width: 180px;
+        width: auto;
       }
     }
   }

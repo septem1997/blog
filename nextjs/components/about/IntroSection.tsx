@@ -34,9 +34,9 @@ const  IntroSection = ()=>{
       <MyTypeIt
         options={{ loop: true }}
         getBeforeInit={(instance:any) => {
-          instance.type("你好哇，我是Septem1997").pause(500)
+          instance.type("Hi! 我是Septem1997").pause(500)
           .type("<br>").pause(100).type('向下滑动试试?')
-            .pause(2000).delete(11).type('绅士的代码，应该像女人的裙子一样，越短越好。').pause(500)
+            .pause(2000).delete(7).type('绅士的代码，应该像女人的裙子一样，越短越好。').pause(500)
           return instance;
         }}
       />
