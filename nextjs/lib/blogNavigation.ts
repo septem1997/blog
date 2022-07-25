@@ -13,11 +13,6 @@ declare type BlogNavigationProp = {
 const BlogNavigationList: BlogNavigationProp[] = [
   {
     isMainPage:false,
-    name: '首页',
-    path: '/',
-    children: Home,
-  },{
-    isMainPage:false,
     name: '碎笔',
     path: '/post',
     children: Home,

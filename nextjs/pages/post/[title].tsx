@@ -1,10 +1,10 @@
-import { LayoutProps } from 'next/dist/lib/app-layout'
+import { useRouter } from 'next/router'
 
-const PostByTitle = ({children}: LayoutProps)=>{
+const PostByTitle = ()=>{
+  const router = useRouter()
   return <div>
-    asdad123
-    {children}
+    {JSON.stringify(router.query)}
+
   </div>
 }
-
 export default PostByTitle
