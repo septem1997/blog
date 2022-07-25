@@ -1,13 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { AllExceptionsFilter } from './any-exception.filter';
+import { AppModule } from './module/app.module';
+import { AllExceptionsFilter } from './config/any-exception.filter';
+import { TransformInterceptor } from './config/transform.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
-  app.useGlobalFilters(new AllExceptionsFilter());
-
-  await app.listen(3000);
+  app.useGlobalInterceptors(new TransformInterceptor());
+  app.useGlobalFilters(new AllExceptionsFilter())
+  app.enableCors()
+  await app.listen(4080);
 }
 bootstrap();

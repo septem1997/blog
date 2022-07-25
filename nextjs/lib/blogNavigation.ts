@@ -1,8 +1,8 @@
-import Home from '../pages'
 import Gallery from '../pages/gallery'
 import { proxy, subscribe, useSnapshot } from 'valtio'
 import IntroSection from '../components/about/IntroSection'
 import PreviewResume from '../components/resume/PreviewResume'
+import PreviewPost from '../components/post/PreviewPost'
 
 declare type BlogNavigationProp = {
   isMainPage:boolean,
@@ -15,7 +15,7 @@ const BlogNavigationList: BlogNavigationProp[] = [
     isMainPage:false,
     name: '碎笔',
     path: '/post',
-    children: Home,
+    children: PreviewPost,
   }, {
     isMainPage:false,
     name: '相册',

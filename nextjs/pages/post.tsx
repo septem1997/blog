@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Scrollbars } from 'react-custom-scrollbars'
+import Link from 'next/link'
 
 const PostWrap = styled(Scrollbars)`
   width: 100%;
@@ -7,6 +8,7 @@ const PostWrap = styled(Scrollbars)`
   background: #e6e6e6;
   position: relative;
   overflow: auto;
+  font-family: 微软雅黑,serif;
   .header{
     position: sticky;
     top: 0;
@@ -38,11 +40,35 @@ const PostWrap = styled(Scrollbars)`
       margin: 24px auto;
       border-radius: 5px 5px 0 0;
       padding: 12px;
+      .bg{
+        background: #FCFCFC;
+      }
+      .post-row{
+        height: 32px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        &:hover{
+          .title{
+            text-decoration:underline;
+          }
+        }
+        .title{
+          font-size: 15px;
+          color: #444444;
+          flex: 1;
+        }
+        .date{
+          font-size: 12px;
+          color: #9b9b9b;
+          width: 122px;
+        }
+      }
     }
   }
 `
 
-const Post = () => {
+const Post = (props:any) => {
   return <PostWrap
     autoHide
     universal={true}
@@ -52,10 +78,32 @@ const Post = () => {
     </div>
     <div className={'body'}>
       <div className={'contents'}>
-        asdasd
+        {props.json.data.map((item:any,index:number) =>
+          <Link key={item.title} href={`/post/${item.title}`}>
+            <a>
+              <div className={'post-row ' + (index%2===0?'bg':'')}>
+                <div className={'title'}>
+                  {item.title}
+                </div>
+                <div className={'date'}>
+                  {item.createTime.slice(0,10)} &nbsp;({item.viewNum})
+                </div>
+              </div>
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   </PostWrap>
+}
+export async function getServerSideProps() {
+  const res = await fetch('http://localhost:8888/api/article/list')
+  const json = await res.json()
+  return {
+    props: {
+      json
+    },
+  }
 }
 
 export default Post

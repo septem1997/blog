@@ -52,6 +52,9 @@ const NavTitle = ()=>{
     },
   } as Variants
   const blogNavigation = useBlogNavigation()
+  if (!blogNavigation.pageTitle){
+    return null
+  }
   return (
     <Wrap
       onClick={()=>{
