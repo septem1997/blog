@@ -50,7 +50,7 @@ const PostByTitle = (props:any)=>{
 }
 export async function getServerSideProps(context:any) {
   const title = context.params.title
-  const res = await fetch('http://127.0.0.1:8888/api/article/detail?title='+title)
+  const res = await fetch('http://127.0.0.1:4080/article/detail?title='+title)
   const json = await res.json()
   return {
     props: {
