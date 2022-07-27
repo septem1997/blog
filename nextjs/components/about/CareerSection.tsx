@@ -33,6 +33,12 @@ const Container = styled.div`
   background: #f1efed;
   position: relative;
   border-top: 1px solid black;
+  ul{
+    list-style: inside disc
+  }
+  ol{
+    list-style: inside decimal
+  }
 `
 const CareerBlock = styled(motion.div)`
   width: 100%;
@@ -69,7 +75,7 @@ const CareerBlock = styled(motion.div)`
   }
   @media screen and (max-width: 420px) {
     grid-template-columns: 50% 50%;
-    grid-template-rows: 100px 32px auto;
+    grid-template-rows: 50px 50px auto;
     .job{
       grid-column-start: 1;
       grid-column-end: 3;
@@ -77,9 +83,14 @@ const CareerBlock = styled(motion.div)`
     .skills{
       display: none;
     }
+    .time,.company-name{
+      font-size: 16px;
+      text-align: center;
+    }
     .content{
       padding: 0 12px;
       font-size: 14px;
+      line-height: 20px;
     }
   }
 `
@@ -130,7 +141,11 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
       }else{
         percent = 0
       }
-      TitleSize.set(48+96*percent+'px')
+      if (windowSize.width<450){
+        TitleSize.set(48+48*percent+'px')
+      }else{
+        TitleSize.set(48+96*percent+'px')
+      }
       TitleHeight.set(100+percent*(screenHeight-400))
     })
   },[TitleHeight, TitleSize, pageY, windowSize.height])
@@ -158,11 +173,11 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
           <div>
             岗位职责：负责公司共享单车小程序、微信公众号和商家运营推广平台的开发
           </div>
-          <ul>
-            <li>基于WebSocket开发了客服系统(web端和小程序端)，可发送图片、语音和位置，具有聊天记录本地缓存和线上同步等功能</li>
-            <li>利用JAVA反射和注解实现了前端html代码自动生成，减少此类重复繁琐的开发工作，让团队更专注于其他特殊需求</li>
-            <li>基于POI和JAVA反射技术实现了excel表格导出自动化工具，市场部人员无需了解sql知识即可根据自己需求导出表格数据，极大减少繁杂多样的sql查询需求工作</li>
-          </ul>
+          <ol>
+            <li>基于WebSocket开发了客服系统，可发送图片、语音和位置，具有聊天记录本地缓存和线上同步等功能</li>
+            <li>利用JAVA反射和注解实现了前端表格增删改查html代码自动生成，减少此类重复繁琐的开发工作，让团队更专注于其他特殊需求</li>
+            <li>基于Apache POI和JAVA反射技术开发了excel表格导出自动化工具，运营人员无需了解sql知识即可根据自己需求导出表格数据，极大减少繁杂多样的sql查询需求工作</li>
+          </ol>
         </div>
         <div
           className={'skills'}>
@@ -190,12 +205,12 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
           <div>
             岗位职责：主导赌场账房系统的前端开发，并负责数据报表统计导出相关后端业务
           </div>
-          <ul>
-            <li>以非侵入式方式重写ajax请求，添加了拦截器，复用代码，提高接口调用开发效率</li>
+          <ol>
+            <li>以非侵入式方式重写Jq Ajax请求，添加了拦截器，提高接口调用开发效率</li>
             <li>完善单据打印功能，利用Promise特性解决了打印顺序不同步的问题，封装打印公共方法，降低了同类需求开发成本</li>
             <li>改进前端框架，独立编写了国际化多语言模块，使得公司产品可面向海外用户</li>
-            <li>改进数据报表导出功能，利用webSocket技术分离了数据报表导出等耗时操作</li>
-          </ul>
+            <li>使用Apache POI实现了带有数据筛选，分类汇总，表头冻结的Excel表格导出，改进数据报表导出功能，利用MQ分离了数据报表导出耗时操作，搭配WebSocket在报表导出完成时推送给前端</li>
+          </ol>
         </div>
         <div
           className={'skills'}>
@@ -218,13 +233,17 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
           Web前端工程师
         </div>
         <div className={'content'}>
-          <ul>
+          <div>
+            岗位职责：担任前端负责人，负责公司前端项目的技术选型，框架搭建和业务开发
+          </div>
+          <ol>
             <li>使用react + echarts图表插件开发公司经营数据可视化看板，响应式布局设计，完美适配高分屏</li>
-            <li>重构基于electron重构pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
+            <li>重构基于electron的pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
+            <li>开发基于Web端app的工作事项笔记工具，可添加无限级的任务事项嵌套以及工作事项的流转</li>
             <li>搭建基于Vue + Antd UI库的商品后台管理系统，抽象业务逻辑封装通用组件，统一封装API请求接口</li>
-            <li>使用Vue3.0+electron开发IM系统(仿钉钉设计)，实现了消息多端同步，消息本地持久化（indexDB），文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
-            <li>开发低代码OA审批系统（仿飞书设计），实现了拖拽生成动态表单，表单嵌套，审批节点分支流程创建，流程分支条件判断，表单与节点数据联动等功能</li>
-          </ul>
+            <li>使用Vue3.0+electron开发即时聊天(IM)工具，实现了消息多端同步，已读未读，消息本地持久化，文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
+            <li>开发低代码OA审批系统，实现了拖拽生成动态表单，表单嵌套，审批节点分支流程创建，流程分支条件判断，表单与节点数据联动等功能</li>
+          </ol>
         </div>
         <div
           className={'skills'}>

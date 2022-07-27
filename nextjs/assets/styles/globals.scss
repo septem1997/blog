@@ -5,7 +5,22 @@
   font-family: youyuan;
   src: url("https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/youyuan.ttf");
 }
+.not-print{
+  display: unset;
+}
+.only-print{
+  display: none;
+}
 @media print {
+  .not-print{
+    display: none;
+  }
+  .only-print{
+    display: unset;
+  }
+  .print-mt-24{
+    margin-top: 24px;
+  }
   .navigator-title,.navigator{
     display: none;
   }

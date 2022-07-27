@@ -2,6 +2,10 @@
   width: 100%
   font-family: 微软雅黑,宋体,sans-serif
   padding: 48px 0
+  ul
+    list-style: inside disc
+  ol
+    list-style: inside decimal
 @media print
   .container
     padding: 0
@@ -23,6 +27,7 @@
 .content-head:not(:first-child)
   margin-top: 24px
 .section
+  font-size: 15px
   padding: 0 1.5cm
   display: flex
   margin-bottom: 12px
@@ -92,9 +97,6 @@
         height: 3.6cm
         background: #428eda
         border: 0.1cm solid white
-        display: flex
-        align-items: center
-        justify-content: center
   .personInfo
     display: flex
     justify-content: center

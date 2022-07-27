@@ -22,9 +22,9 @@ const TextBox = styled(motion.div)`
     letter-spacing: 4px;
     white-space: nowrap;
     color: white;
-  }
-  @media screen and (max-width: 420px) {
-    font-size: 68px;
+    @media screen and (max-width: 420px) {
+      font-size: 48px;
+    }
   }
 `
 const AssessmentSection = ({pageY}:{pageY:MotionValue<number>})=>{
@@ -54,7 +54,7 @@ const AssessmentSection = ({pageY}:{pageY:MotionValue<number>})=>{
   return <SectionBox>
     <TextBox ref={textRef}>
       <motion.div style={{transform:translateX}}>
-        热爱编程，熟悉常见的数据结构和算法，善用编程解决生活中的问题，可独立全栈开发完成项目
+        热爱编程，擅长解决业务发展过程中的各种重难点问题，熟悉常见的数据结构和算法
       </motion.div>
     </TextBox>
   </SectionBox>

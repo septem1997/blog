@@ -72,14 +72,23 @@ const Resume: NextPage = () => {
           打印
         </div>
       </FloatingButton>
-      <FloatingButton style={{top:'calc(50% + 68px)',background:'#cd570d'}} whileHover={'hover'} onClick={handlePrint}>
-        <div className={'icon'}>
-          <DownloadIcon />
-        </div>
-        <div className={'text'}>
-          下载
-        </div>
-      </FloatingButton>
+      {/*todo 转下载*/}
+      <a
+        target={'_blank'}
+        href={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/resume.pdf'}
+        download={true}
+        rel="noreferrer"
+      >
+        <FloatingButton
+          style={{top:'calc(50% + 68px)',background:'#cd570d'}} whileHover={'hover'}>
+          <div className={'icon'}>
+            <DownloadIcon />
+          </div>
+          <div className={'text'}>
+            下载
+          </div>
+        </FloatingButton>
+      </a>
       <div ref={componentRef} style={{zIndex:3}}>
         <ResumePaper />
       </div>
