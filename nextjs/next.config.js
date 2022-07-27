@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: false
   },
+  images: {
+    domains: ['septem1997-blog.oss-cn-hangzhou.aliyuncs.com'],
+  },
   async redirects() {
     return [
       {

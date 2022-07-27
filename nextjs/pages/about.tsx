@@ -21,6 +21,9 @@ const About: NextPage = () => {
         const scrollBars = scrollRef.current! as Scrollbars
         pageY.set(scrollBars.getScrollTop())
       }}
+      style={{
+        fontFamily:'youyuan'
+      }}
       className={styles.container}
       ref={scrollRef}>
       <Head>

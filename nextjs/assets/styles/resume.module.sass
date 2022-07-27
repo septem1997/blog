@@ -1,21 +1,24 @@
 .container
   width: 100%
-  font-family: sans-serif
+  font-family: 微软雅黑,宋体,sans-serif
+  padding: 48px 0
+@media print
+  .container
+    padding: 0
+
 .qrCode
-  margin-top: 48px
   display: flex
   padding: 1.5cm
   flex-direction: row-reverse
   .qrCode-box
+    position: relative
     margin-left: 64px
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
     width: 128px
-    img
-      width: 100%
-      height: auto
+    height: 128px
 
 .content-head:not(:first-child)
   margin-top: 24px
@@ -81,20 +84,17 @@
           width: 20px
           height: 20px
       .avatar-img-box
+        position: relative
+        overflow: hidden
         margin: 0.2cm
         border-radius: 50%
         width: 3.6cm
         height: 3.6cm
         background: #428eda
         border: 0.1cm solid white
-        overflow: hidden
         display: flex
         align-items: center
         justify-content: center
-        img
-          width: 110%
-          height: auto
-          padding-top: 12px
   .personInfo
     display: flex
     justify-content: center
@@ -115,6 +115,8 @@
       font-size: 15px
       margin-top: 12px
 @media only screen and (max-width: 768px)
+  .container
+    padding: 0
   .page
     width: 100%
   .pageHeader
@@ -135,4 +137,3 @@
     //height: 297mm
     margin: 0px auto
     box-shadow: 0 13px 8px 0 rgba(0, 0, 0, .14), 0 8px 15px 7px rgba(0, 0, 0, .2), 0 6px 6px 0 rgba(0, 0, 0, .12)
-    overflow: hidden

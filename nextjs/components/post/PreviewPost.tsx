@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-import { Scrollbars } from 'react-custom-scrollbars'
 
-const PostWrap = styled(Scrollbars)`
+const PostWrap = styled.div`
   width: 100%;
   height: 100%;
   background: #e6e6e6;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
   .header{
     position: sticky;
     top: 0;
@@ -43,10 +42,7 @@ const PostWrap = styled(Scrollbars)`
 `
 
 const PreviewPost = () => {
-  return <PostWrap
-    autoHide
-    universal={true}
-  >
+  return <PostWrap>
     <div className={'header'}>
       <img src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/light.jpg'}/>
     </div>

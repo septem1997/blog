@@ -42,7 +42,7 @@ const MenuNavigator = function() {
     return clearInterval(timer)
   },[])
   return (
-    <div className={styles.wrapper + ' fixed right-0 top-0 z-20'}>
+    <div className={styles.wrapper + ' fixed right-0 top-0 z-20 navigator'}>
       <div className={styles['rainbow-circle']}>
         {['c1', 'c2', 'c3', 'c4', 'c5'].map(c =>
           <div key={c} className={styles[c]} />,

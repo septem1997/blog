@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "react": "18.2.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "18.2.0",
+    "react-to-print": "^2.14.7",
     "react-transition-group": "^4.4.2",
     "styled-components": "^5.3.5",
     "typeit-react": "^2.5.4",

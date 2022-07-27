@@ -1,4 +1,5 @@
 import styles from '../../assets/styles/resume.module.sass'
+import Image from 'next/image'
 
 const ResumePaper = ()=>{
   return <div className={styles.container}>
@@ -7,6 +8,7 @@ const ResumePaper = ()=>{
         <div className={styles.avatar}>
           <div className={styles['avatar-overlay']}>
             <div className={styles['avatar-img-box']}>
+              <Image layout={'fill'} src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/avatar.png'} />
             </div>
           </div>
         </div>
@@ -133,7 +135,7 @@ const ResumePaper = ()=>{
       </div>
       <div className={styles.qrCode}>
         <div className={styles['qrCode-box']}>
-          <img src="https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/qrCode.png"/>
+          <Image loading={'eager'} width={128} height={128} layout={'fill'} src="https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/qrCode.png"/>
           <div>线上简历</div>
         </div>
       </div>

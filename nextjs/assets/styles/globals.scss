@@ -5,6 +5,15 @@
   font-family: youyuan;
   src: url("https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/youyuan.ttf");
 }
+@media print {
+  .navigator-title,.navigator{
+    display: none;
+  }
+}
+::-webkit-scrollbar {
+  //display: none;
+  background: rgba(0,0,0,0);
+}
 *{
   //user-select: none;
 }
@@ -12,7 +21,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: youyuan,serif;
+  font-family: 微软雅黑, 宋体, sans-serif,serif;
   background-color: rgb(14,14,14);
 }
 a {

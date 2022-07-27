@@ -26,6 +26,7 @@ const CardTitle = styled.div`
   width: 20px;
 `
 const CardBox = styled(m.div)`
+  font-family: youyuan, serif;
   position: absolute;
   cursor: pointer;
   top: 100vh;

@@ -12,6 +12,7 @@ const Wrap =  styled(motion.div)`
   bottom: 5px;
   cursor: pointer;
   z-index: 20;
+  font-family: youyuan, serif;
   @media screen and (max-width: 420px) {
     min-width: 180px;
   }
@@ -57,6 +58,7 @@ const NavTitle = ()=>{
   }
   return (
     <Wrap
+      className={'navigator-title'}
       onClick={()=>{
         if (!blogNavigation.visible){
           blogNavigation.setVisible(true)
