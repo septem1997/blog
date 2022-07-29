@@ -48,9 +48,9 @@ const ResumePaper = () => {
             <ol>
               <li>使用react + echarts图表插件开发公司经营数据可视化看板，响应式布局设计，完美适配高分屏</li>
               <li>重构基于electron的pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
-              <li>开发基于Web端app的工作事项笔记工具，可添加无限级的任务事项嵌套以及工作事项的流转</li>
+              <li>开发工作事项笔记工具H5 APP，可添加无限级的任务事项嵌套以及工作事项的流转</li>
               <li>搭建基于Vue + Antd UI库的商品后台管理系统，抽象业务逻辑封装通用组件，统一封装API请求接口</li>
-              <li>使用Vue3.0+electron开发即时聊天(IM)工具，实现了消息多端同步，已读未读，消息本地持久化，文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
+              <li>使用Vue3.0+electron+TypeScript开发即时聊天(IM)工具，实现了消息多端同步，已读未读，消息本地持久化，文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
               <li>开发低代码OA审批系统，实现了拖拽生成动态表单，表单嵌套，审批节点分支流程创建，流程分支条件判断，表单与节点数据联动等功能</li>
             </ol>
           </div>
@@ -96,13 +96,13 @@ const ResumePaper = () => {
             <div>PC端应用</div>
           </div>
           <div>
-            <div><strong>项目简介：</strong>基于Electron+Vue3开发的IM工具，跨多端（浏览器、Win、mac）项目</div>
+            <div><strong>项目简介：</strong>基于Electron+Vue3+TypeScript开发的IM工具，跨多端（浏览器、Windows、mac OS）项目</div>
             <div>
               <strong>项目重点：</strong>
             </div>
             <ol>
               <li>
-                适配了Windows端和mac OS端，实现了以声音、任务栏托盘、气泡弹窗等形式的消息通知，基于Canvas实现了截图工具
+                适配了Windows端和mac OS端，实现了以声音、任务栏托盘、气泡弹窗等形式的消息通知，基于Canvas实现了截图工具，根据运行环境适配不同交互
               </li>
               <li>使用event bus实现了消息的分发，采用IndexedDB实现了消息和联系人数据的持久化，聊天记录本地查询，减轻了服务器负担</li>
               <li>
@@ -175,7 +175,7 @@ const ResumePaper = () => {
         <div className={styles.content}>
           <div className={styles['content-head']}>
             <div>巴士到哪了</div>
-            <div>Web端APP</div>
+            <div>H5 APP</div>
           </div>
           <div>
             <div><strong>技术栈：</strong>Vue3 | Node.js | Canvas</div>
@@ -205,6 +205,16 @@ const ResumePaper = () => {
               <strong>项目简介：</strong>一款win10端文章阅读类应用，每天自动更新推送一篇优质文章，并集成评论区功能，目前已在win10应用商店上架，搜索名字即可体验
             </div>
           </div>
+          <div className={styles['content-head']}>
+            <div>贪吃蛇</div>
+            <div>Web端游戏</div>
+          </div>
+          <div>
+            <div><strong>技术栈：</strong>Cocos Creator | JavaScript</div>
+            <div>
+              <strong>项目简介：</strong>基于Cocos游戏引擎开发的贪吃蛇小游戏，相比传统的贪吃蛇加入了关卡设计和道具设计
+            </div>
+          </div>
         </div>
       </div>
       <div className={styles.section}>
@@ -228,16 +238,17 @@ const ResumePaper = () => {
           <ul>
             <li>热爱编程，善于利用编程解决生活中遇到的问题，能主动学习并不断更新自身技能</li>
             <li>熟悉常见的数据结构和算法，可从零独立开发应用，包括前端页面编写、数据库设计、服务器接口编写及最终部署上线</li>
-            <li>良好的产品审美，能独立、按时按量完成工作中的任务，并协助他人工作，勇于沟通</li>
+            <li>良好的产品审美，能独立、按时按量完成工作任务，并协助他人工作，勇于沟通</li>
             <li>具有一定的英语和源码阅读能力，能熟练使用Google、StackOverflow、GitHub等平台解决工作中遇到的问题</li>
           </ul>
         </div>
       </div>
       <div className={styles.qrCode}>
         <div className={styles['qrCode-box']}>
-          <Image loading={'eager'} width={128} height={128} layout={'fill'}
+          <Image loading={'eager'} width={128} height={128}
                  src='https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/qrCode.png' />
           <div>线上简历</div>
+          <div style={{fontSize:12}}>blog.septem1997.cn/about</div>
         </div>
       </div>
     </div>
