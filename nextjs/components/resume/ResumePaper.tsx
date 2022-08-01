@@ -226,7 +226,7 @@ const ResumePaper = () => {
             <li>编程语言：HTML5，CSS3，JavaScript，TypeScript，Java，Dart</li>
             <li>前端框架：Vue，React，Electron，jQuery，Flutter，小程序</li>
             <li>后端框架：Node.js，SpringBoot</li>
-            <li>其他：Git，PS，MySql，WebSocket，Linux</li>
+            <li>其他：Git，PS，MySql，WebSocket，Linux，Webpack</li>
           </ul>
         </div>
       </div>
