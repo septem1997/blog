@@ -248,7 +248,7 @@ const ResumePaper = () => {
           <Image loading={'eager'} width={128} height={128}
                  src='https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/qrCode.png' />
           <div>线上简历</div>
-          <div style={{fontSize:12}}>blog.septem1997.cn/about</div>
+          <div style={{fontSize:12}}>https://blog.septem1997.cn/about</div>
         </div>
       </div>
     </div>
