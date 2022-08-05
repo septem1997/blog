@@ -50,8 +50,8 @@ const ResumePaper = () => {
               <li>重构基于electron的pc端客服聊天系统，优化接口调用，提高程序响应时间</li>
               <li>开发工作事项笔记工具H5 APP，可添加无限级的任务事项嵌套以及工作事项的流转</li>
               <li>搭建基于Vue + Antd UI库的商品后台管理系统，抽象业务逻辑封装通用组件，统一封装API请求接口</li>
-              <li>使用Vue3.0+electron+TypeScript开发即时聊天(IM)工具，实现了消息多端同步，已读未读，消息本地持久化，文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
-              <li>开发低代码OA审批系统，实现了拖拽生成动态表单，表单嵌套，审批节点分支流程创建，流程分支条件判断，表单与节点数据联动等功能</li>
+              <li>使用Vite+Vue3.0+electron+TypeScript开发即时聊天(IM)工具，实现了消息多端同步，已读未读，消息本地持久化，文件/消息发送fallback机制，消息撤回，实时视频语音等功能</li>
+              <li>开发零代码OA审批系统，实现了拖拽生成动态表单，表单嵌套，审批节点分支流程创建，流程分支条件判断，表单与节点数据联动等功能</li>
             </ol>
           </div>
 
@@ -86,6 +86,7 @@ const ResumePaper = () => {
           </div>
         </div>
       </div>
+      <div className={styles.printPadding}></div>
       <div className={styles.section}>
         <div className={styles.title}>
           主要<br />项目
@@ -96,7 +97,7 @@ const ResumePaper = () => {
             <div>PC端应用</div>
           </div>
           <div>
-            <div><strong>项目简介：</strong>基于Electron+Vue3+TypeScript开发的IM工具，跨多端（浏览器、Windows、mac OS）项目</div>
+            <div><strong>项目简介：</strong>基于Vite+Electron+Vue3+TypeScript开发的IM工具，跨多端（浏览器、Windows、mac OS）项目</div>
             <div>
               <strong>项目重点：</strong>
             </div>
@@ -226,7 +227,7 @@ const ResumePaper = () => {
             <li>编程语言：HTML5，CSS3，JavaScript，TypeScript，Java，Dart</li>
             <li>前端框架：Vue，React，Electron，jQuery，Flutter，小程序</li>
             <li>后端框架：Node.js，SpringBoot</li>
-            <li>其他：Git，PS，MySql，WebSocket，Linux，Webpack</li>
+            <li>其他：Git，MySql，WebSocket，Linux，Webpack</li>
           </ul>
         </div>
       </div>

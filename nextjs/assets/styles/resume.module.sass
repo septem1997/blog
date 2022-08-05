@@ -1,3 +1,6 @@
+.printPadding
+  height: 0.5cm
+  display: none
 .container
   width: 100%
   font-family: 微软雅黑,宋体,sans-serif
@@ -9,7 +12,8 @@
 @media print
   .container
     padding: 0
-
+  .printPadding
+    display: block
 .qrCode
   display: flex
   padding: 1.5cm
