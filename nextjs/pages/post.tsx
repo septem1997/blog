@@ -32,7 +32,7 @@ const PostWrap = styled(Scrollbars)`
     background: rgb(242,242,242);
     display: flex;
     width: 100%;
-    min-height: calc(100vh - 270px);
+    min-height: calc(100% - 270px);
     .contents{
       position: relative;
       background: white;
