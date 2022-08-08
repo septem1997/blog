@@ -34,6 +34,19 @@ const ResumePaper = () => {
       </div>
       <div className={styles.section}>
         <div className={styles.title}>
+          专业<br />技能
+        </div>
+        <div className={styles.content}>
+          <ul>
+            <li>编程语言：HTML5，CSS3，JavaScript，TypeScript，Java，Dart</li>
+            <li>前端框架：Vue，React，Electron，jQuery，Flutter，小程序</li>
+            <li>后端框架：Node.js，SpringBoot</li>
+            <li>其他：Git，Webpack，SASS，WebSocket，MySql</li>
+          </ul>
+        </div>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.title}>
           工作<br />经历
         </div>
         <div className={styles.content}>
@@ -70,6 +83,7 @@ const ResumePaper = () => {
               <li>使用Apache POI实现了带有数据筛选，分类汇总，表头冻结的Excel表格导出，改进数据报表导出功能，利用MQ分离了数据报表导出耗时操作，搭配WebSocket在报表导出完成时推送给前端</li>
             </ol>
           </div>
+          <div style={{pageBreakAfter:'always'}}></div>
           <div className={styles['content-head']}>
             <div>2017.07~2018.06</div>
             <div>小笋科技(深圳)有限公司</div>
@@ -86,7 +100,6 @@ const ResumePaper = () => {
           </div>
         </div>
       </div>
-      <div className={styles.printPadding}></div>
       <div className={styles.section}>
         <div className={styles.title}>
           主要<br />项目
@@ -146,6 +159,7 @@ const ResumePaper = () => {
               </li>
             </ol>
           </div>
+          <div style={{pageBreakAfter:'always'}}></div>
           <div className={styles['content-head']}>
             <div>共享单车</div>
             <div>微信公众号、小程序</div>
@@ -185,7 +199,6 @@ const ResumePaper = () => {
               一个实时查看珠海公交的web端app，相比珠海公交官方的小程序添加了路线规划和公交车到站提醒订阅功能
             </div>
           </div>
-          <div style={{pageBreakAfter:'always'}}></div>
           <div className={styles['content-head']}>
             <div>共享弹幕</div>
             <div>移动端APP</div>
@@ -206,29 +219,6 @@ const ResumePaper = () => {
               <strong>项目简介：</strong>一款win10端文章阅读类应用，每天自动更新推送一篇优质文章，并集成评论区功能，目前已在win10应用商店上架，搜索名字即可体验
             </div>
           </div>
-          <div className={styles['content-head']}>
-            <div>贪吃蛇</div>
-            <div>Web端游戏</div>
-          </div>
-          <div>
-            <div><strong>技术栈：</strong>Cocos Creator | JavaScript</div>
-            <div>
-              <strong>项目简介：</strong>基于Cocos游戏引擎开发的贪吃蛇小游戏，相比传统的贪吃蛇加入了关卡设计和道具设计
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.section}>
-        <div className={styles.title}>
-          专业<br />技能
-        </div>
-        <div className={styles.content}>
-          <ul>
-            <li>编程语言：HTML5，CSS3，JavaScript，TypeScript，Java，Dart</li>
-            <li>前端框架：Vue，React，Electron，jQuery，Flutter，小程序</li>
-            <li>后端框架：Node.js，SpringBoot</li>
-            <li>其他：Git，MySql，WebSocket，Linux，Webpack</li>
-          </ul>
         </div>
       </div>
       <div className={styles.section}>
