@@ -24,11 +24,11 @@ const ResumePaper = () => {
           </div>
           <div className={styles.info}>
             25岁 |
-            750627595@qq.com |
+            邮箱：750627595@qq.com |
             <span className={'not-print'}> 微信:septem1997</span>
             <span className={'only-print'}> 手机:16675644396</span>
             <br />
-            <div>吉林大学珠海学院 - 软件工程 | 本科</div>
+            <div>学校：吉林大学珠海学院 - 软件工程 | 全日制本科</div>
           </div>
         </div>
       </div>
