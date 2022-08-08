@@ -46,7 +46,7 @@ const AssessmentSection = ({pageY}:{pageY:MotionValue<number>})=>{
       }
       if (textRef.current){
         const div = textRef.current as HTMLDivElement
-        const diff = div.scrollWidth - div.clientWidth
+        const diff = div.children[0].clientWidth - div.clientWidth + windowSize.width/2
         translateX.set(`translateX(-${percent*diff}px)`)
       }
     })

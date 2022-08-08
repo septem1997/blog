@@ -11,6 +11,8 @@ const useWindowSize = () => {
         width: window.innerWidth,
         height: window.innerHeight,
       });
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
     window.addEventListener("resize", handleResize);
     handleResize();

@@ -17,6 +17,12 @@ const CareerHead = styled.div`
   width: 100vw;
   text-align: center;
 `
+const BlockWrap = styled.div`
+  position: sticky;
+  top: 100px;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+`
 const HeadTitle = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -94,12 +100,6 @@ const CareerBlock = styled(motion.div)`
     }
   }
 `
-const BlockWrap = styled.div`
-  position: sticky;
-  top: 100px;
-  height: calc(100vh - 100px);
-  overflow: hidden;
-`
 const useScrollTop = (index:number,y:number,screenHeight:number)=>{
   const finalY = useMotionValue(index*100)
   const translateX = useTransform(
@@ -142,7 +142,7 @@ const CareerSection = ({pageY}:{pageY:MotionValue<number>})=>{
         percent = 0
       }
       if (windowSize.width<450){
-        TitleSize.set(48+48*percent+'px')
+        TitleSize.set(42+12*percent+'px')
       }else{
         TitleSize.set(48+96*percent+'px')
       }

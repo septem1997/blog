@@ -16,6 +16,13 @@ const nextConfig = {
       }
     ]
   },
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.tsx/,
+      use: "./loaders/vh-replace-loader.js"
+    })
+    return config
+  },
 }
 
 module.exports = nextConfig

@@ -1,7 +1,9 @@
 import styles from '../../assets/styles/resume.module.sass'
 import Image from 'next/image'
+import useWindowSize from '../../hooks/useWindowSize'
 
 const ResumePaper = () => {
+  useWindowSize()
   return <div className={styles.container}>
     <div className={styles.page}>
       <div className={styles.pageHeader}>
