@@ -65,7 +65,7 @@ function MainLayout({children}: LayoutProps) {
     }, [navigation.visible,navigation.route]);
     return (
         <div className="layout-wrap">
-            <Script src="/iconfont/iconfont.js"></Script>
+            <Script src="https://at.alicdn.com/t/c/font_2780182_os7458mmx2b.js"></Script>
             <LazyMotion features={domAnimation}>
                 <AnimatePresence
                     initial={false}

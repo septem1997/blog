@@ -19,9 +19,14 @@ const PostWrap = styled(Scrollbars)`
     align-items: center;
     justify-content: center;
     z-index: 1;
-    img{
+    .img-wrap{
       height: auto;
       width: 900px;
+      position: relative;
+    }
+    img{
+      height: auto;
+      width: 100%;
     }
   }
   .body{
@@ -78,7 +83,9 @@ const Post = (props:any) => {
       <title>碎笔</title>
     </Head>
     <div className={'header'}>
-      <img src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/light.jpg'}/>
+      <div className={'img-wrap'}>
+        <img src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/light.jpg'}/>
+      </div>
     </div>
     <div className={'body'}>
       <div className={'contents'}>
