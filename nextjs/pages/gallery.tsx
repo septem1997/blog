@@ -5,9 +5,9 @@ import Head from 'next/head'
 const About: NextPage = () => {
   return (
     <div className={styles.container} style={{background:'red'}}>
-      <Head>
+     {/* <Head>
         <title>相册</title>
-      </Head>
+      </Head>*/}
       <div className={'flex items-center flex-col'}>
         <img
           style={{width:'500px',height:'auto'}}
