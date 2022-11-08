@@ -3,6 +3,7 @@ import { motion, MotionValue, ScrollMotionValues, useMotionValue } from 'framer-
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import useMouse from "@react-hook/mouse-position";
+import Link from 'next/link'
 
 const SectionBox = styled.div`
   height: 400vh;

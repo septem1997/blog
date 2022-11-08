@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Scrollbars } from 'react-custom-scrollbars'
 import Link from 'next/link'
 import Head from 'next/head'
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 
 const PostWrap = styled(Scrollbars)`
   width: 100%;
@@ -75,23 +76,25 @@ const PostWrap = styled(Scrollbars)`
 `
 
 const Post = (props:any) => {
-  return <PostWrap
-    autoHide
-    universal={true}
-  >
-    <Head>
-      <title>碎笔</title>
-    </Head>
-    <div className={'header'}>
-      <div className={'img-wrap'}>
-        <img src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/light.jpg'}/>
+  const {data} = useQuery(["list"])
+  return (
+    <PostWrap
+      autoHide
+      universal={true}
+    >
+      <Head>
+        <title>碎笔</title>
+      </Head>
+      <div className={'header'}>
+        <div className={'img-wrap'}>
+          <img src={'https://septem1997-blog.oss-cn-hangzhou.aliyuncs.com/light.jpg'}/>
+        </div>
       </div>
-    </div>
-    <div className={'body'}>
-      <div className={'contents'}>
-        {props.json.data.map((item:any,index:number) =>
-          <Link key={item.title} href={`/post/${item.title}`}>
-            <a>
+      <div className={'body'}>
+        <div className={'contents'}>
+          {data.data.map((item:any,index:number) =>
+            <Link key={item.title} href={`/post/${item.title}`}>
+
               <div className={'post-row ' + (index%2===0?'bg':'')}>
                 <div className={'title'}>
                   {item.title}
@@ -100,19 +103,24 @@ const Post = (props:any) => {
                   {item.createTime.slice(0,10)} &nbsp;({item.viewNum})
                 </div>
               </div>
-            </a>
-          </Link>
-        )}
+
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
-  </PostWrap>
+    </PostWrap>
+  );
 }
 export async function getServerSideProps() {
-  const res = await fetch('http://127.0.0.1:4080/article/list')
-  const json = await res.json()
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(["list"],()=>{
+    return fetch('http://127.0.0.1:4080/article/list').then((res)=>{
+      return res.json()
+    })
+  })
   return {
     props: {
-      json
+      dehydrateState:dehydrate(queryClient)
     },
   }
 }
